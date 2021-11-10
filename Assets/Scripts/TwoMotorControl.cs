@@ -6,57 +6,136 @@ using UnityEngine.UI;
 public class TwoMotorControl : MonoBehaviour
 {
     //UI elements
-    public Text rMotSpeed;
-    public Text lMotSpeed;
+    public Text rMotorSpeed;
+    public Text lMotorSpeed;
 
 
-    private float leftThrottleValue = 0f;
-    private float rightThrottleValue = 0f;
-    private Rigidbody tankRigidbody;
+    private Rigidbody robotRigidBody;
 
+
+    //Motor information
     public float rightMotorSpeed = 0f;
     public float leftMotorSpeed = 0f;
+
+    private float rightDefaultSpeed = 0f;
+    private float leftDefaultSpeed = 0f;
+
+    private bool lMotorStop;
+    private bool rMotorStop;
+
+    public bool isStalled;
+
+
+    //"Noise" for randomness on motors
+    private float rightMotorNoise;
+    private float leftMotorNoise;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        tankRigidbody = GetComponent<Rigidbody>();
-        lMotSpeed.text = "0";
-        rMotSpeed.text = "0";
+        robotRigidBody = GetComponent<Rigidbody>();
+        lMotorSpeed.text = "0";
+        rMotorSpeed.text = "0";
+
+        isStalled = false;
+
+        lMotorStop = false;
+        rMotorStop = false;
+        rightMotorNoise = Random.Range(-0.009f, 0.009f);
+        leftMotorNoise = Random.Range(-0.009f, 0.009f);
+
+
     }
 
 
+    //Setters and getters
     public void setMotorSpeeds(float right, float left)
     {
-        rightMotorSpeed = right;
-        leftMotorSpeed = left;
-
-
-
-
+            rightMotorSpeed = right + (rightMotorNoise);
+            leftMotorSpeed = left + (leftMotorNoise);
 
     }
+
+    public void setDefaultSpeeds(float right, float left)
+    {
+        rightDefaultSpeed = right;
+        leftDefaultSpeed = left;
+
+    }
+
+    public void setMotorStop(string right, string left)
+    {
+        if(left != null)
+        {
+         if(left.Contains("true"))
+                {
+                    lMotorStop = true;
+                }
+        }
+       
+        if(right != null)
+        {
+
+            if(right.Contains("true"))
+            {
+             rMotorStop = true;
+            }
+        }
+        
+    }
+
+    public void setIsStalled(bool x)
+    {
+        isStalled = x;
+    }
+
+   public bool getIsStalled()
+    {
+        return isStalled;
+    }
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //If stalled
+        if(isStalled)
+        {
+            setMotorSpeeds(0 -rightMotorNoise, 0 - leftMotorNoise);
+        }
 
-        rMotSpeed.text = rightMotorSpeed.ToString();
-        lMotSpeed.text = leftMotorSpeed.ToString();
+        if(lMotorStop)
+        {
+            leftMotorSpeed = 0 - leftMotorNoise;
+            lMotorStop = false;
 
-        leftThrottleValue = leftMotorSpeed;
-        rightThrottleValue = rightMotorSpeed;
+        }
+
+        if(rMotorStop)
+        {
+            rightMotorSpeed = 0 - rightMotorNoise;
+            rMotorStop = false;
+        }
 
 
 
-        // Move the tank.
-        Vector3 movement = transform.forward * ((leftThrottleValue + rightThrottleValue) / 2f) * Time.deltaTime;
-        tankRigidbody.MovePosition(tankRigidbody.position + movement);
 
-        // Turn the tank.
-        float turn = (leftThrottleValue - rightThrottleValue) * Time.deltaTime;
+        //Updating UI
+        rMotorSpeed.text = rightMotorSpeed.ToString("F3");
+        lMotorSpeed.text = leftMotorSpeed.ToString("F3");
+
+
+
+        //Move the robot.
+        Vector3 movement = -1 *transform.forward * ((leftMotorSpeed + rightMotorSpeed) / 2f) * Time.deltaTime;
+        robotRigidBody.MovePosition(robotRigidBody.position + movement);
+
+        // Turn the robot.
+        float turn = -1 *(rightMotorSpeed - leftMotorSpeed ) * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-        tankRigidbody.MoveRotation(tankRigidbody.rotation * turnRotation);
+        robotRigidBody.MoveRotation(robotRigidBody.rotation * turnRotation);
 
 
 
