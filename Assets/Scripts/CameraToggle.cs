@@ -10,6 +10,7 @@ public class CameraToggle : MonoBehaviour
     public Camera ThreeD;
     public Camera TwoD;
     public Button yourButton;
+    public Canvas ui; //Need this for making the canvas fit the screen for both cameras
 
     public void Start()
     {
@@ -17,11 +18,23 @@ public class CameraToggle : MonoBehaviour
         btn.onClick.AddListener(FlipCams);
         ThreeD.enabled = false;
         TwoD.enabled = true;
+        ui.worldCamera = TwoD;
     }
     public void FlipCams()
     {
        
         ThreeD.enabled = !ThreeD.enabled;
         TwoD.enabled = !TwoD.enabled;
+        
+        if(ui.worldCamera == TwoD)
+        {
+            ui.worldCamera = ThreeD;
+        }
+        else
+        {
+            ui.worldCamera = TwoD;
+        }
+
+
     }
 }
