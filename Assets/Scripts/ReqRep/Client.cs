@@ -132,6 +132,7 @@ namespace ReqRep
 
         private void handleMotorMessage(MotorMessage motorMessage)
         {
+
             try
             {
                 string motorId = motorMessage.getId();

@@ -9,6 +9,13 @@ public class ColorDetection : MonoBehaviour
     
     public string currentColor = "None";
     public Text colorTxt;
+    private string colorID;
+
+
+    public ColorDetection(string id)
+    {
+        this.colorID = id;
+    }
 
     void Start()
     {
@@ -26,14 +33,14 @@ public class ColorDetection : MonoBehaviour
 
        
 
-        if (other.name == "Red")
+        if (other.name.ToString().Contains("Red"))
         {
             currentColor = "Red";
             colorTxt.text = currentColor;
 
         }
 
-        if (other.name == "Black")
+        if (other.name.ToString().Contains("Black"))
         {
             currentColor = "Black";
             colorTxt.text = currentColor;
@@ -114,14 +121,14 @@ public class ColorDetection : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
 
-        if (other.name == "Black")
+        if (other.name.ToString().Contains("Black"))
         {
             currentColor = "Black";
             colorTxt.text = currentColor;
 
         }
 
-        if (other.name == "Red")
+        if (other.name.ToString().Contains("Red"))
         {
             currentColor = "Red";
             colorTxt.text = currentColor;
@@ -194,6 +201,3 @@ public class ColorDetection : MonoBehaviour
 
 
 }
-
-
-

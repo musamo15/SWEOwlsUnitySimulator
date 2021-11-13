@@ -20,7 +20,7 @@ public class TCPServer : MonoBehaviour
 
 
     //Access to the color script from this one
-    GameObject colorInfoObj;
+    public GameObject colorInfoObj;
     ColorDetection colorController;
 
     //Access to hub position/rotation script
@@ -28,7 +28,7 @@ public class TCPServer : MonoBehaviour
     CalculatePosition hubController;
 
     //Access to the distance sensor
-    GameObject distanceInfo;
+    public GameObject distanceInfo;
     DistanceSensor distanceController;
 
 
@@ -63,13 +63,11 @@ public class TCPServer : MonoBehaviour
         motorInfoObj = spikePrime;
         motorController = motorInfoObj.GetComponent<TwoMotorControl>();
 
-        colorInfoObj = GameObject.Find("ColorSensor");
         colorController = colorInfoObj.GetComponent<ColorDetection>();
 
         hubInfoObj = spikePrime;
         hubController = hubInfoObj.GetComponent<CalculatePosition>();
 
-        distanceInfo = GameObject.Find("DistanceSensor");
         distanceController = distanceInfo.GetComponent<DistanceSensor>();
 
 
@@ -88,7 +86,6 @@ public class TCPServer : MonoBehaviour
 
             tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 5000);
             tcpListener.Start();
-            Debug.Log("Original Server is listening");
             Byte[] bytes = new Byte[1024];
 
 
@@ -113,7 +110,7 @@ public class TCPServer : MonoBehaviour
 
                             string clientMessage = Encoding.ASCII.GetString(incomingData);
 
-                            Debug.Log("Client message recieved as: " + clientMessage);
+                            //Debug.Log("Client message recieved as: " + clientMessage);
 
                             //Message to json format
                             handleMessage(clientMessage);
@@ -145,12 +142,10 @@ public class TCPServer : MonoBehaviour
                 NetworkStream stream = connectedTcpClient.GetStream();
                 if (stream.CanWrite)
                 {
-                    //string serverMessage = "This is a message from your orginal server.";
                     // Convert string message to byte array.                 
                     byte[] serverMessageAsByteArray = Encoding.ASCII.GetBytes(messageHeader);
                     // Write byte array to socketConnection stream.               
                     stream.Write(serverMessageAsByteArray, 0, serverMessageAsByteArray.Length);
-                    //Debug.Log("Server sent his message - should be received by client");
                 }
 
                 
@@ -171,45 +166,50 @@ public class TCPServer : MonoBehaviour
         //Debug.Log(newMessage);
         Message message = Message.CreateFromJSON(newMessage);
 
+        Debug.Log(newMessage);
+
         if (message != null)
         {
-           
-            if (message.requestMessage != null) { 
-                
-                if (message.requestMessage.type == "color")
-                {
-                    SendMessageToPython("Recieved Color Message");
-                }
-                else
-                {
-                    SendMessageToPython("Type Test");
+            string messageType = message.messageType;
+            string messageBody = message.messageBody;
 
-                }
-            }
-            else
+            if (messageType != null)
             {
-                SendMessageToPython("Test");
-                
+
+                if (messageType.Equals("lightMatrix"))
+                {
+                    LightMatrixMessage lightMatrixMessage = LightMatrixMessage.createFromJSON(messageBody);
+                    handleLightMatrixMessage(lightMatrixMessage);
+                }
+
+                else if (messageType.Equals("color"))
+                {
+                    ColorMessage colorMessage = ColorMessage.createFromJSON(messageBody);
+                    handleColorMessage(colorMessage);
+                }
+
+                else if (messageType.Equals("motor"))
+                {
+                    MotorMessage motorMessage = MotorMessage.createFromJSON(messageBody);
+                    handleMotorMessage(motorMessage);
+
+                }
+
+                else if (messageType.Equals("distance"))
+                {
+                    DistanceMessage distanceMessage = DistanceMessage.createFromJSON(messageBody);
+                    handleDistanceMessage(distanceMessage);
+                }
             }
-
-
-            //if(message.MessageType != null)
-            //{
-            //    SendMessage("Yo");
-            //}
-
-            //if (message.colorMessage != null)
-            //{
-            //    Debug.Log("Color Request");
-            //    //SendMessage("{" + "\"color\" : {\"currentColor\" : \"" + colorController.currentColor + "\"" + "}}");
-            //    SendMessage("Test");
-                
-            //}
 
         }
 
     }
 
+    private void handleColorMessage(ColorMessage colorMessage)
+    {
+        //SendMessageToPython("Yo");
+    }
 
     private void handleMotorMessage(MotorMessage motorMessage)
     {
@@ -248,13 +248,22 @@ public class TCPServer : MonoBehaviour
 
     }
 
+    private void handleLightMatrixMessage(LightMatrixMessage lightMatrixMessage)
+    {
+
+    }
+
+    private void handleDistanceMessage(DistanceMessage distanceMessage)
+    {
+
+    }
+
+
     [System.Serializable]
     public class Message
     {
-
-        public RequestMessage requestMessage = null;
-        public SendMessage sendMessage = null;
-
+        public string messageType;
+        public string messageBody;
         public static Message CreateFromJSON(string jsonString)
         {
             try
@@ -270,45 +279,43 @@ public class TCPServer : MonoBehaviour
     }
 
 
-    [System.Serializable]
-    public class RequestMessage
-    {
-        public string type = null;
+    //[System.Serializable]
+    //public class RequestMessage
+    //{
+    //    public string type = null;
 
-        public static RequestMessage CreateFromJSON(string jsonString)
-        {
-            try
-            {
-                return JsonUtility.FromJson<RequestMessage>(jsonString);
-            }
-            catch (Exception exception)
-            {
-                return null;
-            }
+    //    public static RequestMessage CreateFromJSON(string jsonString)
+    //    {
+    //        try
+    //        {
+    //            return JsonUtility.FromJson<RequestMessage>(jsonString);
+    //        }
+    //        catch (Exception exception)
+    //        {
+    //            return null;
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
 
-    [System.Serializable]
-    public class SendMessage
-    {
-        public MotorMessage motorMessage = null;
-        public ColorMessage colorMessage = null;
+    //[System.Serializable]
+    //public class SendMessage
+    //{
 
-        public static SendMessage CreateFromJSON(string jsonString)
-        {
-            try
-            {
-                return JsonUtility.FromJson<SendMessage>(jsonString);
-            }
-            catch (Exception exception)
-            {
-                return null;
-            }
+    //    public static SendMessage CreateFromJSON(string jsonString)
+    //    {
+    //        try
+    //        {
+    //            return JsonUtility.FromJson<SendMessage>(jsonString);
+    //        }
+    //        catch (Exception exception)
+    //        {
+    //            return null;
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
 
 
@@ -393,7 +400,7 @@ public class TCPServer : MonoBehaviour
     public class ColorMessage
     {
 
-        public string type;
+        private string colorID;
 
         public static ColorMessage createFromJSON(string jsonString)
         {
@@ -409,10 +416,48 @@ public class TCPServer : MonoBehaviour
         }
 
 
+        public string getColorID()
+        {
+            return this.colorID;
+        }
+
+
 
     }
 
+    [System.Serializable]
+    public class DistanceMessage
+    {
+        public static DistanceMessage createFromJSON(string jsonString)
+        {
+            try
+            {
+                return JsonUtility.FromJson<DistanceMessage>(jsonString);
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class LightMatrixMessage
+    {
+        private string image;
 
 
+        public static LightMatrixMessage createFromJSON(string jsonString)
+        {
+            try
+            {
+                return JsonUtility.FromJson<LightMatrixMessage>(jsonString);
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
 
+        }
+    }
 }
