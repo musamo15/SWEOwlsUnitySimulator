@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d1b0844af70034ba3dfca3cf9507aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: Level Select
+  levelToLoad: Robot Selection
 --- !u!4 &147634681
 Transform:
   m_ObjectHideFlags: 0
@@ -592,7 +592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8575155867103210017, guid: fc131574a88e6f84fb9648008ef09ff1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level Select
+      value: Robot Selection
       objectReference: {fileID: 0}
     - target: {fileID: 8575155867103210017, guid: fc131574a88e6f84fb9648008ef09ff1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -643,7 +643,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

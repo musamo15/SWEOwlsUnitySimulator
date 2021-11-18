@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 4d3cdc1acc32e32409c199c2329718b2
+  - enabled: 1
     path: Assets/Scenes/Level Select.unity
     guid: cb36e9da31cee644ebe194fbc3a39ef5
   - enabled: 1
@@ -17,19 +20,40 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: 089b60fdc0319da4099ad4391975af4a
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 4d3cdc1acc32e32409c199c2329718b2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/World 1.unity
     guid: 5984d030208cad548b7029297d5139a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/World 2.unity
     guid: 670c3150ebfa83a4a9606072090fca03
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/World 3.unity
     guid: 5eda7769fe39d99409e5433692aa1c9c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/World 4.unity
     guid: 984c04fb64022c8458c07a7c290239d9
+  - enabled: 1
+    path: Assets/Scenes/Robot Selection.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 961f72c883d53204e95834e062614bcb
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 16ad72effbd3e6d46b4edf8381e20f2a
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: a35d55a91d891564c8cbe0fabe6cdb76
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 1688588a4187c004ba7b0ba0dd12101a
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: e5e2ad7b88044b14f91129408d881776
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: fb1168edfd378724e9d1733bc21e5e1a
+  - enabled: 1
+    path: Assets/Scenes/Level 7.unity
+    guid: c739b08155fb45f4a83797323085510d
   m_configObjects: {}

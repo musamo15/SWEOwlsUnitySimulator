@@ -70,8 +70,8 @@ namespace ReqRep
         private void Start()
         {
 
-            GameObject spikePrime = GameObject.Find("SpikePrime");
-
+            //GameObject spikePrime = GameObject.Find("SpikePrime");
+            GameObject spikePrime = GameObject.FindWithTag("SpikePrime"); // changed this line to findWithTag because it finds the ACTIVE game object with this tag.
             _listener = new Listener(host, port, handleMessage);
             EventManager.Instance.onSendRequest.AddListener(OnClientRequest);
 
