@@ -13,6 +13,14 @@ public class LevelEditorManager : MonoBehaviour
 
     public Camera twoDCam;
 
+    public GameObject spikePrimeObject;
+    public TwoMotorControl motorController;
+
+    public void Start()
+    {
+        spikePrimeObject = GameObject.FindGameObjectWithTag("SpikePrime");
+    }
+
 
     private void Update()
     {
@@ -35,6 +43,8 @@ public class LevelEditorManager : MonoBehaviour
                     //calcPos.Start();
                     calcPos.startingPosition = ItemPrefabs[CurrentButtonPressed].transform.position;
                     calcPos.calculateCurrentPosition();
+                    motorController = spikePrimeObject.GetComponent<TwoMotorControl>();
+                    motorController.setIsStalled(false);
 
                 }
                 else

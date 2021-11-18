@@ -5,22 +5,47 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TCPTestClient : MonoBehaviour
 {
-	#region private members 	
-	private TcpClient socketConnection;
-	private Thread clientReceiveThread;
-	#endregion
+		
+	public TcpClient socketConnection;
+	public Thread clientReceiveThread;
 
+	private static TCPTestClient tcp;
 
-	void OnApplicationQuit()
+	void Awake()
     {
-		Debug.Log("Test");
+		if (tcp == null)
+        {
+			tcp = this;
+			DontDestroyOnLoad(this);
+		}
+
 		ConnectToTcpServer();
-		SendMessage();
+
+
+
+	}
+
+    void OnApplicationQuit()
+    {
+		
+		if(socketConnection != null)
+        {
+			SendMessage();
+			socketConnection.GetStream().Close();
+			socketConnection.Close();
+			clientReceiveThread.Abort();
+		}
+
     }
-	private void ConnectToTcpServer()
+
+
+
+	public void ConnectToTcpServer()
 	{
 		try
 		{
@@ -37,7 +62,7 @@ public class TCPTestClient : MonoBehaviour
 	{
 		try
 		{
-			socketConnection = new TcpClient("localhost", 4000);
+			socketConnection = new TcpClient("127.0.0.1", 4444);
 			Byte[] bytes = new Byte[1024];
 			while (true)
 			{
@@ -52,18 +77,18 @@ public class TCPTestClient : MonoBehaviour
 						Array.Copy(bytes, 0, incommingData, 0, length);
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData);
-						Debug.Log("server message received as: " + serverMessage);
+						
 					}
 				}
 			}
 		}
 		catch (SocketException socketException)
 		{
-			Debug.Log("Socket exception: " + socketException);
+			//Debug.Log("Socket exception: " + socketException);
 		}
 	}
 
-	private void SendMessage()
+	public void SendMessage()
 	{
 		if (socketConnection == null)
 		{
@@ -75,12 +100,13 @@ public class TCPTestClient : MonoBehaviour
 			NetworkStream stream = socketConnection.GetStream();
 			if (stream.CanWrite)
 			{
-				string clientMessage = "ShutDown";
+				string clientMessage = "Shutdown";
 				// Convert string message to byte array.                 
 				byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage);
 				// Write byte array to socketConnection stream.                 
 				stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);
-				Debug.Log("Client sent his message - should be received by server");
+				Debug.Log("Message sent");
+				
 			}
 		}
 		catch (SocketException socketException)

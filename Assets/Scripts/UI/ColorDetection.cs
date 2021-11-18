@@ -53,21 +53,21 @@ public class ColorDetection : MonoBehaviour
             colorTxt.text = currentColor;
 
         }
-              if ((other.name.ToString()).Contains("Blue"))
+              if ((other.name.ToString()).Contains("Blue("))
                 {
                     currentColor = "Blue";
                     colorTxt.text = currentColor;
 
                 }
 
-                if (other.name.ToString().Contains("Green"))
+                if (other.name.ToString().Contains("Green("))
                 {
                     currentColor = "Green";
                     colorTxt.text = currentColor;
 
                 }
 
-                if (other.name.ToString().Contains("Light Green"))
+                if (other.name.ToString().Contains("Light Green("))
                 {
                     currentColor = "Light Green";
                     colorTxt.text = currentColor;
@@ -102,7 +102,7 @@ public class ColorDetection : MonoBehaviour
 
                 }
 
-                if (other.name.ToString().Contains("Light Blue"))
+                if (other.name.ToString().Contains("Light Blue("))
                 {
                     currentColor = "Light Blue";
                     colorTxt.text = currentColor;
@@ -142,21 +142,21 @@ public class ColorDetection : MonoBehaviour
             colorTxt.text = currentColor;
 
         }
-        if ((other.name.ToString()).Contains("Blue"))
+        if ((other.name.ToString()).Contains("Blue("))
         {
             currentColor = "Blue";
             colorTxt.text = currentColor;
 
         }
 
-        if (other.name.ToString().Contains("Green"))
+        if (other.name.ToString().Contains("Green("))
         {
             currentColor = "Green";
             colorTxt.text = currentColor;
 
         }
 
-        if (other.name.ToString().Contains("Light Green"))
+        if (other.name.ToString().Contains("Light Green("))
         {
             currentColor = "Light Green";
             colorTxt.text = currentColor;
@@ -191,7 +191,7 @@ public class ColorDetection : MonoBehaviour
 
         }
 
-        if (other.name.ToString().Contains("Light Blue"))
+        if (other.name.ToString().Contains("Light Blue("))
         {
             currentColor = "Light Blue";
             colorTxt.text = currentColor;

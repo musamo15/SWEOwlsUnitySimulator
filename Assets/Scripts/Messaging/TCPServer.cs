@@ -31,6 +31,10 @@ public class TCPServer : MonoBehaviour
     public GameObject distanceInfo;
     DistanceSensor distanceController;
 
+    //Access to the lightMatrix
+    GameObject lightMatrixInfo;
+    LightMatrix lightMatrixController;
+
 
 
 
@@ -54,6 +58,13 @@ public class TCPServer : MonoBehaviour
     string lMotorStop;
 
 
+    void OnApplicationQuit()
+    {
+        tcpListener.Stop();
+        tcpListenerThread.Abort();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +82,10 @@ public class TCPServer : MonoBehaviour
         distanceController = distanceInfo.GetComponent<DistanceSensor>();
 
 
+        lightMatrixInfo = GameObject.Find("LightMatrixImage");
+        lightMatrixController = lightMatrixInfo.GetComponent<LightMatrix>();
+
+
         tcpListenerThread = new Thread(new ThreadStart(ListenForIncomingRequests));
         tcpListenerThread.IsBackground = true;
         tcpListenerThread.Start();
@@ -84,7 +99,7 @@ public class TCPServer : MonoBehaviour
         try
         {
 
-            tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 5000);
+            tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 3000);
             tcpListener.Start();
             Byte[] bytes = new Byte[1024];
 
@@ -114,6 +129,7 @@ public class TCPServer : MonoBehaviour
 
                             //Message to json format
                             handleMessage(clientMessage);
+                            
 
 
                         }
@@ -123,6 +139,10 @@ public class TCPServer : MonoBehaviour
                 }
 
             }
+
+
+
+
         }
         catch (SocketException socketException)
         {
@@ -163,42 +183,57 @@ public class TCPServer : MonoBehaviour
 
     private void handleMessage(string newMessage)
     {
-        //Debug.Log(newMessage);
+        
         Message message = Message.CreateFromJSON(newMessage);
-
-        Debug.Log(newMessage);
+        
 
         if (message != null)
         {
             string messageType = message.messageType;
-            string messageBody = message.messageBody;
+            string messageRequestType = message.messageRequestType;
 
             if (messageType != null)
             {
-
-                if (messageType.Equals("lightMatrix"))
+                if(messageType.Equals("shutdown"))
                 {
-                    LightMatrixMessage lightMatrixMessage = LightMatrixMessage.createFromJSON(messageBody);
+                    Application.Quit();
+                }
+
+                else if (messageType.Equals("hub"))
+                {
+                    HubMessage hubMessage = HubMessage.createFromJSON(newMessage);
+                    handleHubMessage(hubMessage);
+                }
+
+
+                else if (messageType.Equals("lightMatrix"))
+                {
+                    LightMatrixMessage lightMatrixMessage = LightMatrixMessage.createFromJSON(newMessage);
                     handleLightMatrixMessage(lightMatrixMessage);
                 }
 
                 else if (messageType.Equals("color"))
                 {
-                    ColorMessage colorMessage = ColorMessage.createFromJSON(messageBody);
+                    ColorMessage colorMessage = ColorMessage.createFromJSON(newMessage);
                     handleColorMessage(colorMessage);
                 }
 
                 else if (messageType.Equals("motor"))
                 {
-                    MotorMessage motorMessage = MotorMessage.createFromJSON(messageBody);
+                    MotorMessage motorMessage = MotorMessage.createFromJSON(newMessage);
                     handleMotorMessage(motorMessage);
 
                 }
 
                 else if (messageType.Equals("distance"))
                 {
-                    DistanceMessage distanceMessage = DistanceMessage.createFromJSON(messageBody);
+                    DistanceMessage distanceMessage = DistanceMessage.createFromJSON(newMessage);
                     handleDistanceMessage(distanceMessage);
+                }
+
+                if(messageRequestType.Equals("Send"))
+                {
+                    SendMessageToPython("Messsage Received");
                 }
             }
 
@@ -208,53 +243,78 @@ public class TCPServer : MonoBehaviour
 
     private void handleColorMessage(ColorMessage colorMessage)
     {
-        //SendMessageToPython("Yo");
+        SendMessageToPython("{" + "\"color\" : {\"currentColor\" : \"" + colorController.currentColor + "\"" + "}}");
     }
 
     private void handleMotorMessage(MotorMessage motorMessage)
     {
+
+
         string motorId = motorMessage.getId();
-        if (motorId.Equals("B"))
-        {
-            this.rMotorAmmount = motorMessage.getAmount();
-            this.rMotorRotation = motorMessage.getRotation();
-            this.rMotorSpeed = motorMessage.getSpeed();
-            this.rMotorUnit = motorMessage.getUnit();
-            this.rMotorStop = motorMessage.getStopped();
-            this.rMotorDefault = motorMessage.getDefaultSpeed();
 
-        }
-        else if (motorId.Equals("A"))
-        {
-            this.lMotorAmmount = motorMessage.getAmount();
-            this.lMotorRotation = motorMessage.getRotation();
-            this.lMotorSpeed = motorMessage.getSpeed();
-            this.lMotorUnit = motorMessage.getUnit();
-            this.lMotorStop = motorMessage.getStopped();
-            this.lMotorDefault = motorMessage.getDefaultSpeed();
 
+        if (motorMessage.messageRequestType.Equals("Request") && motorMessage.component.Equals("stall"))
+        {
+            SendMessageToPython("{" + "\"motor\" : {\"stall\" : \"" + motorController.getIsStalled() + "\"}}");
         }
 
-    
+        if (motorMessage.messageRequestType.Equals("Request") && motorMessage.component.Equals("position"))
+        {
+            SendMessageToPython("{" + "\"motor\" : {\"currentPosition\" : \"" + hubController.getCurrentPosition() + "\"}}");
+        }
+
+        else
+        {
 
 
-        motorController.setDefaultSpeeds(rMotorDefault, lMotorDefault);
+            if (motorId.Equals("B"))
+            {
+                this.rMotorAmmount = motorMessage.getAmount();
+                this.rMotorRotation = motorMessage.getRotation();
+                this.rMotorSpeed = motorMessage.getSpeed();
+                this.rMotorUnit = motorMessage.getUnit();
+                this.rMotorStop = motorMessage.getStopped();
+                this.rMotorDefault = motorMessage.getDefaultSpeed();
 
-        motorController.setMotorStop(rMotorStop, lMotorStop);
+            }
+            else if (motorId.Equals("A"))
+            {
+                this.lMotorAmmount = motorMessage.getAmount();
+                this.lMotorRotation = motorMessage.getRotation();
+                this.lMotorSpeed = motorMessage.getSpeed();
+                this.lMotorUnit = motorMessage.getUnit();
+                this.lMotorStop = motorMessage.getStopped();
+                this.lMotorDefault = motorMessage.getDefaultSpeed();
 
-        motorController.setMotorSpeeds(rMotorSpeed, lMotorSpeed);
+            }
 
 
+
+
+            motorController.setDefaultSpeeds(rMotorDefault, lMotorDefault);
+
+            motorController.setMotorStop(rMotorStop, lMotorStop);
+
+            motorController.setMotorSpeeds(rMotorSpeed, lMotorSpeed);
+
+        }
 
     }
 
     private void handleLightMatrixMessage(LightMatrixMessage lightMatrixMessage)
     {
-
+        lightMatrixController.setImage(lightMatrixMessage.getImage());
     }
 
     private void handleDistanceMessage(DistanceMessage distanceMessage)
     {
+
+    }
+
+    private void handleHubMessage(HubMessage hubMessage)
+    {
+
+            SendMessageToPython("{" + "\"hub\" : {\"rotation\" : \"" + hubController.getCurrentRotation().ToString("F0") + "\"" + "}}");
 
     }
 
@@ -263,7 +323,7 @@ public class TCPServer : MonoBehaviour
     public class Message
     {
         public string messageType;
-        public string messageBody;
+        public string messageRequestType;
         public static Message CreateFromJSON(string jsonString)
         {
             try
@@ -278,48 +338,6 @@ public class TCPServer : MonoBehaviour
         }
     }
 
-
-    //[System.Serializable]
-    //public class RequestMessage
-    //{
-    //    public string type = null;
-
-    //    public static RequestMessage CreateFromJSON(string jsonString)
-    //    {
-    //        try
-    //        {
-    //            return JsonUtility.FromJson<RequestMessage>(jsonString);
-    //        }
-    //        catch (Exception exception)
-    //        {
-    //            return null;
-    //        }
-
-    //    }
-    //}
-
-
-    //[System.Serializable]
-    //public class SendMessage
-    //{
-
-    //    public static SendMessage CreateFromJSON(string jsonString)
-    //    {
-    //        try
-    //        {
-    //            return JsonUtility.FromJson<SendMessage>(jsonString);
-    //        }
-    //        catch (Exception exception)
-    //        {
-    //            return null;
-    //        }
-
-    //    }
-    //}
-
-
-
-
     [System.Serializable]
     public class MotorMessage
     {
@@ -333,7 +351,8 @@ public class TCPServer : MonoBehaviour
         public string steering;
         public string stall;
         public string isStop;
-        public string messageType;
+        public string messageRequestType;
+        public string component;
 
         public static MotorMessage createFromJSON(string jsonString)
         {
@@ -445,6 +464,17 @@ public class TCPServer : MonoBehaviour
     public class LightMatrixMessage
     {
         private string image;
+        private string text;
+
+        public string getImage()
+        {
+            return this.image;
+        }
+
+        public string getText()
+        {
+            return this.text;
+        }
 
 
         public static LightMatrixMessage createFromJSON(string jsonString)
@@ -452,6 +482,23 @@ public class TCPServer : MonoBehaviour
             try
             {
                 return JsonUtility.FromJson<LightMatrixMessage>(jsonString);
+            }
+            catch (Exception exception)
+            {
+                return null;
+            }
+
+        }
+    }
+
+    [System.Serializable]
+    public class HubMessage
+    {
+        public static HubMessage createFromJSON(string jsonString)
+        {
+            try
+            {
+                return JsonUtility.FromJson<HubMessage>(jsonString);
             }
             catch (Exception exception)
             {
