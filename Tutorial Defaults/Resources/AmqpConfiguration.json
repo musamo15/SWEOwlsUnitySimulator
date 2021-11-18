@@ -1,0 +1,26 @@
+{
+    "Connections": [
+        {
+            "Name": "Cloud",
+            "Host": "clam.rmq.cloudamqp.com",
+            "AmqpPort": 5671,
+            "WebPort": 443,
+            "VirtualHost": "zciavoja",
+            "Username": "zciavoja",
+            "Password": "srnFVWWZtZ-m6hH6OK42-e7H0qo66ZPV",
+            "ReconnectInterval": 5,
+            "RequestedHeartBeat": 30
+        },
+        {
+            "Name": "local",
+            "Host": "loaclhost",
+            "AmqpPort": 5672,
+            "WebPort": 15672,
+            "VirtualHost": "/",
+            "Username": "guest",
+            "Password": "guest",
+            "ReconnectInterval": 5,
+            "RequestedHeartBeat": 30
+        }
+    ]
+}
