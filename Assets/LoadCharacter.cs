@@ -17,10 +17,12 @@ public class LoadCharacter : MonoBehaviour
 		if(selectedCharacter == 0)
         {
 			lem.ItemPrefabs[1].SetActive(true); // 1 is the index of SpikePrime in Level editor manager
+			lem.characterButtons[0].SetActive(true);
         }
 		if (selectedCharacter == 1)
 		{
 			lem.ItemPrefabs[13].SetActive(true); // 13 is the index of SpikePrimeSideColor in level editor manager
+			lem.characterButtons[1].SetActive(true);
 		}
 		//else
 		//{

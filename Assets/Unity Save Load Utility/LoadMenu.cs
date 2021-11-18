@@ -146,7 +146,8 @@ public class LoadMenu : MonoBehaviour
 
 			if (GUILayout.Button("Clear"))
 			{
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+				//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+				slu.ClearScene();
 				return;
 			}
 

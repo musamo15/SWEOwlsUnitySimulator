@@ -6,6 +6,7 @@ public class LevelEditorManager : MonoBehaviour
 {
     public ItemController[] ItemButtons;
     public GameObject[] ItemPrefabs;
+    public GameObject[] characterButtons;
     public GameObject[] ItemImage;
     public int CurrentButtonPressed;
     
