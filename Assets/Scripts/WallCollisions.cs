@@ -7,19 +7,10 @@ public class WallCollisions : MonoBehaviour
     GameObject motorInfo;
     TwoMotorControl controller;
 
-    public void Start()
-    {
-
-
-        //motorInfo = GameObject.Find("SpikePrime");
-        motorInfo = GameObject.FindGameObjectWithTag("SpikePrime");
-        controller = motorInfo.GetComponent<TwoMotorControl>();
-
-    }
-   
-
     void OnTriggerEnter(Collider other)
     {
+        motorInfo = GameObject.FindWithTag("SpikePrime");
+        controller = motorInfo.GetComponent<TwoMotorControl>();
         controller.setIsStalled(true);
 
     }

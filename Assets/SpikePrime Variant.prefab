@@ -1156,13 +1156,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4314102018555581591}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a282c66bc203d14d94c34d0c6b2bbda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   host: localhost
   port: 5556
+  colorInfoObj: {fileID: 0}
+  distanceInfo: {fileID: 0}
 --- !u!114 &1067104550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,6 +1178,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedText: {fileID: 0}
+--- !u!114 &432305124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4599059728285693673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6191c2e3bf32a6d49ba028a795914b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectableDistance: 200
+  distanceText: {fileID: 0}
 --- !u!65 &1541294795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1203,20 +1219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentColor: None
   colorTxt: {fileID: 0}
---- !u!114 &432305124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4599059728285693673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6191c2e3bf32a6d49ba028a795914b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectableDistance: 200
-  distanceText: {fileID: 0}
 --- !u!1001 &3972083870123174342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2402,7 +2404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b374293784b0802469ed2346b1de423e, type: 3}
       propertyPath: m_Name
-      value: SpikePrime
+      value: SpikePrime Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b374293784b0802469ed2346b1de423e, type: 3}
       propertyPath: m_TagString
