@@ -18,7 +18,7 @@ public class CalculatePosition : MonoBehaviour
 
     public void Start()
     {
-        SpikePrime = GameObject.Find("SpikePrime");
+        SpikePrime = GameObject.FindWithTag("SpikePrime");
         //SpikePrime = GameObject.FindGameObjectWithTag("SpikePrime");
         startingPosition = SpikePrime.transform.position;
         startingRotation = SpikePrime.transform.eulerAngles.y;

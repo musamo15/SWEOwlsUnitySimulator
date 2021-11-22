@@ -6,20 +6,18 @@ using UnityEngine.UI;
 public class ColorDetection : MonoBehaviour
 {
 
-    
+
     public string currentColor = "None";
     public Text colorTxt;
-    private string colorID;
+    public string colorID;
+    
 
 
-    public ColorDetection(string id)
+    void Awake()
     {
-        this.colorID = id;
-    }
-
-    void Start()
-    {
+        currentColor = "None";
         colorTxt.text = currentColor;
+        
     }
 
     public string getCurrentColor()
@@ -32,7 +30,7 @@ public class ColorDetection : MonoBehaviour
     {
 
        
-
+        
         if (other.name.ToString().Contains("Red"))
         {
             currentColor = "Red";
@@ -120,7 +118,7 @@ public class ColorDetection : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-
+       
         if (other.name.ToString().Contains("Black"))
         {
             currentColor = "Black";
@@ -144,6 +142,7 @@ public class ColorDetection : MonoBehaviour
         }
         if ((other.name.ToString()).Contains("Blue("))
         {
+       
             currentColor = "Blue";
             colorTxt.text = currentColor;
 
@@ -158,6 +157,7 @@ public class ColorDetection : MonoBehaviour
 
         if (other.name.ToString().Contains("Light Green("))
         {
+            
             currentColor = "Light Green";
             colorTxt.text = currentColor;
 
@@ -198,6 +198,8 @@ public class ColorDetection : MonoBehaviour
 
         }
     }
+
+
 
 
 }
