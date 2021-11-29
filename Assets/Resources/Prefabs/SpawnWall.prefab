@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabName: SpawnWall
-  id: 
-  idParent: 
+  id: 2
+  idParent: 1
   dontSave: 0
-  componentSaveMode: 3
+  componentSaveMode: 2
   componentTypesToSave: []
