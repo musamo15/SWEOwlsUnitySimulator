@@ -10,14 +10,14 @@ public class ColorDetection : MonoBehaviour
     public string currentColor = "None";
     public Text colorTxt;
     public string colorID;
+    public string detectedColor;
     
 
 
     void Awake()
     {
         currentColor = "None";
-        colorTxt.text = currentColor;
-        
+        colorTxt.text = currentColor;  
     }
 
     public string getCurrentColor()
@@ -28,175 +28,158 @@ public class ColorDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        detectedColor = other.name.ToString();
 
-       
-        
-        if (other.name.ToString().Contains("Red"))
+
+        if (detectedColor.Contains("Red"))
         {
             currentColor = "Red";
-            colorTxt.text = currentColor;
-
         }
 
-        if (other.name.ToString().Contains("Black"))
+        else if (detectedColor.Contains("Black"))
         {
             currentColor = "Black";
-            colorTxt.text = currentColor;
-
         }
 
-        if ((other.name.ToString()).Contains("White"))
+        else if (detectedColor.Contains("White"))
         {
             currentColor = "White";
-            colorTxt.text = currentColor;
-
         }
-              if ((other.name.ToString()).Contains("Blue("))
-                {
-                    currentColor = "Blue";
-                    colorTxt.text = currentColor;
 
-                }
+        else if (detectedColor.Contains("Blue"))
+           {
 
-                if (other.name.ToString().Contains("Green("))
-                {
-                    currentColor = "Green";
-                    colorTxt.text = currentColor;
-
-                }
-
-                if (other.name.ToString().Contains("Light Green("))
-                {
-                    currentColor = "Light Green";
-                    colorTxt.text = currentColor;
-
-                }
-
-                if (other.name.ToString().Contains("Orange"))
-                {
-                    currentColor = "Orange";
-                    colorTxt.text = currentColor;
-
-                }
-
-                if (other.name.ToString().Contains("Pink"))
-                {
-                    currentColor = "Pink";
-                    colorTxt.text = currentColor;
-
-                }
-
-                if (other.name.ToString().Contains("Violet"))
-                {
-                    currentColor = "Violet";
-                    colorTxt.text = currentColor;
-
-                }
-
-                if (other.name.ToString().Contains("Yellow"))
-                {
-                    currentColor = "Yellow";
-                    colorTxt.text = currentColor;
-
-                }
-
-                if (other.name.ToString().Contains("Light Blue("))
+                if (detectedColor.Contains("Light"))
                 {
                     currentColor = "Light Blue";
-                    colorTxt.text = currentColor;
-
                 }
-            }
+                else
+                {
+                    currentColor = "Blue";
+                }
+                              
+           }
+
+        else if (detectedColor.Contains("Green"))
+           {
+
+                if (detectedColor.Contains("Light"))
+                {
+                    currentColor = "Light Green";
+                
+                }
+                else
+                {
+                    currentColor = "Green";
+                }
+
+           }
+
+        else if (detectedColor.Contains("Orange"))
+           {
+               currentColor = "Orange";
+           }
+
+        else if (detectedColor.Contains("Pink"))
+           {
+               currentColor = "Pink";   
+           }
+
+        else if (detectedColor.Contains("Violet"))
+           {
+               currentColor = "Violet"; 
+           }
+
+        else if (detectedColor.Contains("Yellow"))
+           {
+               currentColor = "Yellow";
+
+           }
+
+
+        colorTxt.text = currentColor;
+    }
    
     void OnTriggerExit(Collider other)
     {
 
-       
         currentColor = "None";
         colorTxt.text = currentColor;
     }
 
     void OnTriggerStay(Collider other)
     {
-       
-        if (other.name.ToString().Contains("Black"))
+       detectedColor = other.name.ToString();
+
+
+        if (detectedColor.Contains("Black"))
         {
             currentColor = "Black";
-            colorTxt.text = currentColor;
 
         }
 
-        if (other.name.ToString().Contains("Red"))
+        else if (detectedColor.Contains("Red"))
         {
             currentColor = "Red";
-            colorTxt.text = currentColor;
 
         }
 
-        if ((other.name.ToString()).Contains("White"))
+        else if(detectedColor.Contains("White"))
         {
             currentColor = "White";
-            
-            colorTxt.text = currentColor;
 
         }
-        if ((other.name.ToString()).Contains("Blue("))
+
+        else if (detectedColor.Contains("Blue"))
         {
-       
-            currentColor = "Blue";
-            colorTxt.text = currentColor;
+
+            if(detectedColor.Contains("Light"))
+            {
+                currentColor = "Light Blue";
+            }
+            else
+            {
+                currentColor = "Blue";
+            }
 
         }
 
-        if (other.name.ToString().Contains("Green("))
-        {
-            currentColor = "Green";
-            colorTxt.text = currentColor;
-
-        }
-
-        if (other.name.ToString().Contains("Light Green("))
+        else if (detectedColor.Contains("Green"))
         {
             
-            currentColor = "Light Green";
-            colorTxt.text = currentColor;
+            if(detectedColor.Contains("Light"))
+            {
+                currentColor = "Light Green";
+            }
+            else
+            {
+                currentColor = "Green";
+            }
 
         }
 
-        if (other.name.ToString().Contains("Orange"))
+        else if (detectedColor.Contains("Orange"))
         {
             currentColor = "Orange";
-            colorTxt.text = currentColor;
-
         }
 
-        if (other.name.ToString().Contains("Pink"))
+        else if (detectedColor.Contains("Pink"))
         {
             currentColor = "Pink";
-            colorTxt.text = currentColor;
-
         }
 
-        if (other.name.ToString().Contains("Violet"))
+        else if (detectedColor.Contains("Violet"))
         {
             currentColor = "Violet";
-            colorTxt.text = currentColor;
-
         }
 
-        if (other.name.ToString().Contains("Yellow"))
+        else if (detectedColor.Contains("Yellow"))
         {
             currentColor = "Yellow";
-            colorTxt.text = currentColor;
-
         }
 
-        if (other.name.ToString().Contains("Light Blue("))
-        {
-            currentColor = "Light Blue";
-            colorTxt.text = currentColor;
 
-        }
+        colorTxt.text = currentColor;
     }
 
 

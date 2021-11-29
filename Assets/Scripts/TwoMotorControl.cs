@@ -32,8 +32,7 @@ public class TwoMotorControl : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         robotRigidBody = GetComponent<Rigidbody>();
         lMotorSpeed.text = "0";
