@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8136709773412336125}
   - component: {fileID: 1781722971932168418}
   - component: {fileID: 6039732448281817567}
+  - component: {fileID: 238741919803149702}
+  - component: {fileID: -1844453689119835421}
   m_Layer: 8
   m_Name: VioletImage
   m_TagString: ItemImage
@@ -53,7 +55,6 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -109,3 +110,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fb81dc22303d34e9c9a8b74bac2c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &238741919803149702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306176316040224349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483869743d3ffbc40a5dadff105f0ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 10
+--- !u!114 &-1844453689119835421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306176316040224349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b855d91fb2195d4781c6be48336df51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 10

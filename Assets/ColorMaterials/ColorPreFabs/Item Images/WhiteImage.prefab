@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5637608598191698922}
   - component: {fileID: 2769250674834006773}
   - component: {fileID: 7856206165744190408}
+  - component: {fileID: 6912989617168296266}
+  - component: {fileID: -2671319264380265187}
   m_Layer: 8
   m_Name: WhiteImage
   m_TagString: ItemImage
@@ -53,7 +55,6 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -109,3 +110,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fb81dc22303d34e9c9a8b74bac2c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6912989617168296266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244758062845488202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483869743d3ffbc40a5dadff105f0ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 11
+--- !u!114 &-2671319264380265187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244758062845488202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b855d91fb2195d4781c6be48336df51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 11

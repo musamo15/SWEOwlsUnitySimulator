@@ -52,7 +52,9 @@ public class LevelEditorManager : MonoBehaviour
 
                 else
                 {
-                    Instantiate(ItemPrefabs[CurrentButtonPressed], new Vector3(worldPosition.x, 0, worldPosition.z), Quaternion.identity);
+                    //Instantiate(ItemPrefabs[CurrentButtonPressed], new Vector3(worldPosition.x, 0, worldPosition.z), Quaternion.identity);
+                    GameObject newObject = Instantiate(ItemPrefabs[CurrentButtonPressed], new Vector3(worldPosition.x, 0, worldPosition.z), GameObject.FindWithTag("ItemImage").transform.rotation) as GameObject;
+                    newObject.transform.localScale = GameObject.FindWithTag("ItemImage").transform.localScale;
                     Destroy(GameObject.FindWithTag("ItemImage"));
                 }
 

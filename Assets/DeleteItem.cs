@@ -15,7 +15,7 @@ public class DeleteItem : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(Input.GetKey("backspace"))
+        if(Input.GetKey("backspace") || Input.GetMouseButtonDown(1))
         {
             Destroy(this.gameObject);
             //editor.ItemButtons[ID].quantity++;

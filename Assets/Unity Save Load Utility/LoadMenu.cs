@@ -50,23 +50,22 @@ public class LoadMenu : MonoBehaviour
 	{
 
 		if(showLoad == true) {
-			scrollPosition = GUI.BeginScrollView(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 50, 320, 150), scrollPosition, new Rect(0, 0, 220, 500));
-			GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
-			GUILayout.BeginArea(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 50, 300, 500));
+			scrollPosition = GUI.BeginScrollView(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 50, 270, 150), scrollPosition, new Rect(0, 0, 220, 500));
+			//GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
+			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 50, 300, 500));
 			foreach (SaveGame saveGame in saveGames) {
 				if(GUILayout.Button(saveGame.savegameName + " (" + saveGame.saveDate + ")")) {
 					slu.LoadGame(saveGame.savegameName);
 					showLoad = false;
-					GUI.EndScrollView();
 					return;
 				}
 			}
-
+			GUI.EndScrollView();
 			//GUILayout.BeginHorizontal();
 			//GUILayout.FlexibleSpace();
 			//GUILayout.EndHorizontal();
 
-			GUILayout.FlexibleSpace();
+			//GUILayout.FlexibleSpace();
 			//GUILayout.EndArea();
 			//GUILayout.EndVertical();
 			//GUI.EndScrollView();
