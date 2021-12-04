@@ -23,14 +23,14 @@ public class RotateItem : MonoBehaviour
             if (Input.GetKey("."))
             {
                 lastPressedTime = Time.time;
-                this.gameObject.transform.Rotate(0.0f, 10.0f, 0.0f, Space.Self);
+                this.gameObject.transform.Rotate(0.0f, 0.0f, 10.0f, Space.Self);
             }
 
             //if (Input.GetMouseButtonDown(0))
             if (Input.GetKey(","))
             {
                 lastPressedTime = Time.time;
-                this.gameObject.transform.Rotate(0.0f, -10.0f, 0.0f, Space.Self);
+                this.gameObject.transform.Rotate(0.0f, 0.0f, -10.0f, Space.Self);
             }
         }
     }

@@ -128,12 +128,12 @@ public class TwoMotorControl : MonoBehaviour
 
 
         //Move the robot.
-        Vector3 movement = -1 *transform.forward * ((leftMotorSpeed + rightMotorSpeed) / 2f) * Time.deltaTime;
+        Vector3 movement = -1 *-transform.up * ((leftMotorSpeed + rightMotorSpeed) / 2f) * Time.deltaTime;
         robotRigidBody.MovePosition(robotRigidBody.position + movement);
 
         // Turn the robot.
         float turn = -1 *(rightMotorSpeed - leftMotorSpeed ) * Time.deltaTime;
-        Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
+        Quaternion turnRotation = Quaternion.Euler(0f, 0f, turn);
         robotRigidBody.MoveRotation(robotRigidBody.rotation * turnRotation);
 
 
