@@ -15,6 +15,9 @@ public class LoadMenu : MonoBehaviour
 	private char[] newLine = "\n\r".ToCharArray();
 	public Vector2 scrollPosition = Vector2.zero;
 
+	public float originalWidth = 1920.0f;
+	public float originalHeight = 1080.0f;
+
 	private Regex regularExpression = new Regex("^[a-zA-Z0-9_\"  *\"]*$");
 	/*Regular expression, contains only upper and lowercase letters, numbers, and underscores.
  
@@ -49,8 +52,12 @@ public class LoadMenu : MonoBehaviour
 	void OnGUI()
 	{
 
-		if(showLoad == true) {
-			scrollPosition = GUI.BeginScrollView(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 50, 270, 150), scrollPosition, new Rect(0, 0, 220, 500));
+		if (showLoad == true) {
+			float resX = (float)(Screen.width) / originalWidth;
+			float resY = (float)(Screen.height) / originalHeight;
+			GUI.matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, new Vector3(resX, resY, 1));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150), scrollPosition, new Rect(0, 0, 100, 500));
+			//scrollPosition = GUI.BeginScrollView(new Rect((Screen.width / 2) - 100, (Screen.height / 2) - 50, 200, 150), scrollPosition, new Rect(0, 0, 100, 500)); //500 shows 20 files
 			//GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
 			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 50, 300, 500));
 			foreach (SaveGame saveGame in saveGames) {

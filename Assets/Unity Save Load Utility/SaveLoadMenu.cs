@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class SaveLoadMenu : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class SaveLoadMenu : MonoBehaviour {
 	private int selectedSaveGameIndex = -99;
 	public List<SaveGame> saveGames;
 	private char[] newLine = "\n\r".ToCharArray();
+
+	public Vector2 scrollPosition = Vector2.zero;
+	public float originalWidth = 800.0f;
+	public float originalHeight = 600.0f;
 
 	private Regex regularExpression = new Regex("^[a-zA-Z0-9_\"  *\"]*$");
 	/*Regular expression, contains only upper and lowercase letters, numbers, and underscores.
@@ -89,19 +94,23 @@ public class SaveLoadMenu : MonoBehaviour {
 
 	void OnGUI() {
 
+		float resX = (float)(Screen.width) / originalWidth;
+		float resY = (float)(Screen.height) / originalHeight;
+		GUI.matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, new Vector3(resX, resY, 1));
 
-		
 
 		if (showMenu == false && showLoad == false && showSave == false) {
-			if(GUILayout.Button("Menu")) {
+			if(GUI.Button(new Rect(0, 0, 50, 50),"Menu")) {
 				showMenu = true;
 				return;
 			}
 		}
 
 		if(showMenu == true) {
-			GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
-			GUILayout.BeginArea(new Rect((Screen.width / 2)-50, (Screen.height / 2)-50, 300, 300));
+			//GUILayout.BeginVertical(GUILayout.MinWidth(300));
+			//GUILayout.BeginArea(new Rect((Screen.width / 2)-50, (Screen.height / 2)-50, 300, 300));
+			GUILayout.BeginArea(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150));
+			//scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150), scrollPosition, new Rect(0, 0, 100, 500));
 
 			if (GUILayout.Button("Save")) {
 				showMenu = false;
@@ -125,25 +134,33 @@ public class SaveLoadMenu : MonoBehaviour {
 				return;
 			}
 
-			if(GUILayout.Button("Close")) {
+			if (GUILayout.Button("Clear"))
+			{
+				slu.LoadGame("zzz DONT TOUCH zzz.sav"); //Loads a nonexistent file to clear the level
+				//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+				return;
+			}
+
+			if (GUILayout.Button("Close")) {
 				showSave = false;
 				showMenu = false;
 				showLoad = false;
 				return;
 			}
 
-			if(GUILayout.Button("Exit to Windows")) {
-				Application.Quit();
-				return;
-			}
+			//if(GUILayout.Button("Exit to Windows")) {
+			//	Application.Quit();
+			//	return;
+			//}
 
 			GUILayout.FlexibleSpace();
-			GUILayout.EndVertical();
+			//GUILayout.EndVertical();
 			GUILayout.EndArea();
 		}
 		if(showLoad == true) {
-			GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
-			GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 300, 300));
+			//GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
+			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 300, 300));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150), scrollPosition, new Rect(0, 0, 100, 500));
 			foreach (SaveGame saveGame in saveGames) {
 				if(GUILayout.Button(saveGame.savegameName + " (" + saveGame.saveDate + ")")) {
 					slu.LoadGame(saveGame.savegameName);
@@ -151,32 +168,35 @@ public class SaveLoadMenu : MonoBehaviour {
 					return;
 				}
 			}
-
-			GUILayout.BeginHorizontal();
-			GUILayout.FlexibleSpace();
-			if(GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
+			GUI.EndScrollView();
+			//GUILayout.BeginHorizontal();
+			//GUILayout.FlexibleSpace();
+			if (GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
 				showLoad = false;
 				showMenu = true;
 			}
 			GUILayout.FlexibleSpace();
-			GUILayout.EndHorizontal();
+			//GUILayout.EndHorizontal();
 
 			GUILayout.FlexibleSpace();
-			GUILayout.EndArea();
-			GUILayout.EndVertical();
-			
+			//GUILayout.EndArea();
+			//GUILayout.EndVertical();
+			//GUI.EndScrollView();
+
 		}
 		if(showSave == true) {
 
-			GUILayout.BeginVertical(GUILayout.MinWidth(550));
-			GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 250, 200));
+			//GUILayout.BeginVertical(GUILayout.MinWidth(550));
+			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 250, 200));
+			//GUILayout.BeginArea(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 250, 150), scrollPosition, new Rect(0, 0, 150, 525));
 			for (int i = -1; i < saveGames.Count; i++) {
 
 				if(i == selectedSaveGameIndex) {
 
 					GUILayout.BeginHorizontal(GUILayout.MinWidth(100));
 
-					string str = GUILayout.TextField(saveGameName, GUILayout.MinWidth(100));
+					string str = GUILayout.TextField(saveGameName, GUILayout.MinWidth(95));
 
 					if(regularExpression.IsMatch(str)){
 						if(str.IndexOfAny(newLine) != -1) {
@@ -230,7 +250,7 @@ public class SaveLoadMenu : MonoBehaviour {
 					}
 				}
 			}
-
+			GUI.EndScrollView();
 			GUILayout.BeginHorizontal();
 			GUILayout.FlexibleSpace();
 			if (GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
@@ -246,8 +266,9 @@ public class SaveLoadMenu : MonoBehaviour {
 			GUILayout.EndHorizontal();
 
 			GUILayout.FlexibleSpace();
-			GUILayout.EndVertical();
-			GUILayout.EndArea();
+			//GUILayout.EndVertical();
+			//GUILayout.EndArea();
+			//GUI.EndScrollView();
 
 		}
 	}
