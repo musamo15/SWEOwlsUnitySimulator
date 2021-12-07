@@ -22,15 +22,34 @@ public class RotateItem : MonoBehaviour
             //if (Input.GetMouseButtonDown(1))
             if (Input.GetKey("."))
             {
-                lastPressedTime = Time.time;
-                this.gameObject.transform.Rotate(0.0f, 0.0f, 10.0f, Space.Self);
+                if (this.gameObject.tag == "SpikePrime")
+                {
+                    lastPressedTime = Time.time;
+                    this.gameObject.transform.Rotate(0.0f, 0.0f, 10.0f, Space.Self);
+                }
+                else
+                {
+                    lastPressedTime = Time.time;
+                    this.gameObject.transform.Rotate(0.0f, 10.0f, 0, Space.Self);
+                }
+
             }
 
             //if (Input.GetMouseButtonDown(0))
             if (Input.GetKey(","))
             {
-                lastPressedTime = Time.time;
-                this.gameObject.transform.Rotate(0.0f, 0.0f, -10.0f, Space.Self);
+                if (this.gameObject.tag == "SpikePrime")
+                {
+                    lastPressedTime = Time.time;
+                    this.gameObject.transform.Rotate(0.0f, 0.0f, -10.0f, Space.Self);
+                }
+                else
+                {
+                    lastPressedTime = Time.time;
+                    this.gameObject.transform.Rotate(0.0f, -10.0f, 0, Space.Self);
+                }
+
+
             }
         }
     }

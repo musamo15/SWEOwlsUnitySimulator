@@ -37,12 +37,14 @@ public class PauseToggle : MonoBehaviour
     
     public void Resume()
     {
+        //GameObject.FindWithTag("Pause").SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
 
     public void Pause()
     {
+        //GameObject.FindWithTag("Pause").SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
