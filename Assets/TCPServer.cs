@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TCPServer : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class TCPServer : MonoBehaviour
     private TcpListener tcpListener;
     private Thread tcpListenerThread;
     private TcpClient connectedTcpClient;
+
+    public bool goToMain = false;
 
 
     //Access to the script that contains the current robot
@@ -214,9 +217,6 @@ public class TCPServer : MonoBehaviour
 
             }
 
-
-
-
         }
         catch (SocketException socketException)
         {
@@ -254,8 +254,6 @@ public class TCPServer : MonoBehaviour
         }
 
     }
-
-
 
 
     private void handleMessage(string newMessage)
@@ -342,6 +340,11 @@ public class TCPServer : MonoBehaviour
                 SendColorMessage(standingColorControllerE.currentColor);
             }
 
+            else
+            {
+                SendColorPortErrorMessage("C, F", colorMessage.id);
+            }
+
         }
         //Front Back
         else if (currentRobotID == 2)
@@ -356,6 +359,11 @@ public class TCPServer : MonoBehaviour
             {
                 SendColorMessage(frontBackColorControllerD.currentColor);
             }
+
+            else
+            {
+                SendColorPortErrorMessage("E, D", colorMessage.id);
+            }
         }
 
         //Triple color
@@ -365,22 +373,37 @@ public class TCPServer : MonoBehaviour
             {
                 SendColorMessage(trippleColorControllerC.currentColor);
             }
-            if (colorMessage.getColorID().Equals("D"))
+            else if (colorMessage.getColorID().Equals("D"))
             {
                 SendColorMessage(trippleColorControllerD.currentColor);
             }
-            if (colorMessage.getColorID().Equals("E"))
+            else if (colorMessage.getColorID().Equals("E"))
             {
                 SendColorMessage(trippleColorControllerE.currentColor);
             }
+            else
+            {
+                SendColorPortErrorMessage("C, D, E", colorMessage.id);
+            }
         }
-
-
     }
 
     public void SendColorMessage(string currentColor)
     {
         SendMessageToPython("{" + "\"color\" : {\"currentColor\" : \"" + currentColor + "\"" + "}}");
+    }
+
+    public void SendColorPortErrorMessage(string ports, string id)
+    {
+        SendMessageToPython("{" + "\"error\" : {\"message\" : \"" + "Tried to access unavailable port " + id + " with a Color Sensor. Currently available ports are: " + ports  + "\"" + "}}");
+        goToMain = true;
+
+    }
+
+    public void SendDistancePortErrorMessage(string ports, string id)
+    {
+        SendMessageToPython("{" + "\"error\" : {\"message\" : \"" + "Tried to access unavailable port " + id +" with a Distance Sensor. Currently available ports are: " + ports + "\"" + "}}");
+        goToMain = true;
     }
 
     private void handleMotorMessage(MotorMessage motorMessage)
@@ -390,16 +413,18 @@ public class TCPServer : MonoBehaviour
         string motorId = motorMessage.getId();
 
 
-
-
-        if (motorMessage.messageRequestType.Equals("Request") && motorMessage.component.Equals("stall"))
+        if (motorMessage.messageRequestType.Equals("Request"))
         {
-            SendMessageToPython("{" + "\"motor\" : {\"stall\" : \"" + motorController.getIsStalled() + "\"}}");
-        }
 
-        if (motorMessage.messageRequestType.Equals("Request") && motorMessage.component.Equals("position"))
-        {
-            SendMessageToPython("{" + "\"motor\" : {\"currentPosition\" : \"" + hubController.getCurrentPosition() + "\"}}");
+            if (motorMessage.component.Equals("stall"))
+            {
+                SendMessageToPython("{" + "\"motor\" : {\"stall\" : \"" + motorController.getIsStalled() + "\"}}");
+            }
+
+            else if (motorMessage.component.Equals("position"))
+            {
+                SendMessageToPython("{" + "\"motor\" : {\"currentPosition\" : \"" + hubController.getCurrentPosition() + "\"}}");
+            }
         }
 
         else
@@ -465,6 +490,10 @@ public class TCPServer : MonoBehaviour
             {
                 SendMessageToPython("{" + "\"distanceSensor\" : {\"value\" : \"" + standingDistanceControllerF.getCurrentDistance() + "\"" + "}}");
             }
+            else
+            {
+                SendDistancePortErrorMessage("D, F", distanceMessage.id);
+            }
             
         }
 
@@ -478,6 +507,15 @@ public class TCPServer : MonoBehaviour
             {
                 SendMessageToPython("{" + "\"distanceSensor\" : {\"value\" : \"" + frontBackDistanceControllerF.getCurrentDistance() + "\"" + "}}");
             }
+            else
+            {
+                SendDistancePortErrorMessage("C, F", distanceMessage.id);
+            }
+        }
+
+        else if (currentRobotID == 3)
+        {
+            SendDistancePortErrorMessage("None", distanceMessage.id);
         }
     }
 
@@ -506,6 +544,13 @@ public class TCPServer : MonoBehaviour
             }
             
         }
+
+        if(goToMain)
+        {
+            SceneManager.LoadScene("MainMenu");
+            goToMain = false;
+        }
+
     }
 
     [System.Serializable]
