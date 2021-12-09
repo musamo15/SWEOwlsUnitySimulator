@@ -310,7 +310,7 @@ public class TCPServer : MonoBehaviour
 
                 if(messageRequestType.Equals("Send"))
                 {
-                    SendMessageToPython("Messsage Received");
+                    SendMessageToPython("{\"message\" : \"Message received\"}");
                 }
             }
 

@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraZoom : MonoBehaviour
 {
 
-    public float scrollSpeed = 0f;
+    public float scrollSpeed = 100f;
 
     public Camera zoomCam;
 
@@ -14,7 +14,5 @@ public class CameraZoom : MonoBehaviour
     {
         zoomCam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
     }
-
-
 
 }
