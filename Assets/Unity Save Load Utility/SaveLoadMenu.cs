@@ -161,7 +161,8 @@ public class SaveLoadMenu : MonoBehaviour {
 		if(showLoad == true) {
 			//GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
 			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 300, 300));
-			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250.0f / 2, originalHeight / 2 - 150.0f / 2, 350, 200), scrollPosition, new Rect(0, 0, 300, 500));
+			
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250, originalHeight / 2 - 100, 350, 200), scrollPosition, new Rect(0, 0, 0, 500));
 			foreach (SaveGame saveGame in saveGames) {
 				if(GUILayout.Button(saveGame.savegameName + " (" + saveGame.saveDate + ")")) {
 					slu.LoadGame(saveGame.savegameName);
@@ -171,18 +172,20 @@ public class SaveLoadMenu : MonoBehaviour {
 			}
 			GUI.EndScrollView();
 
-			GUILayout.BeginArea(new Rect((Screen.width / 2) - 75, (Screen.height / 2) - 0, 250, 200));
-			GUILayout.BeginVertical();
-			GUILayout.BeginHorizontal();
+			GUILayout.FlexibleSpace();
+
+			GUILayout.BeginArea(new Rect((Screen.width / 2) - 85, (Screen.height / 2) + 240, 250, 100));
+			//GUILayout.BeginVertical();
+			//GUILayout.BeginHorizontal(GUILayout.Width(200));
 
 			if (GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
 				showLoad = false;
 				showMenu = true;
 			}
 
-			GUILayout.FlexibleSpace();
-			GUILayout.EndHorizontal();
-			GUILayout.EndVertical();
+			//GUILayout.FlexibleSpace();
+			//GUILayout.EndHorizontal();
+			//GUILayout.EndVertical();
 			GUILayout.EndArea();
 			//GUILayout.FlexibleSpace();
 			//GUILayout.EndHorizontal();
@@ -261,8 +264,8 @@ public class SaveLoadMenu : MonoBehaviour {
 			}
 			GUI.EndScrollView();
 			//GUILayout.BeginHorizontal();
-			//GUILayout.FlexibleSpace();
-			GUILayout.BeginArea(new Rect((Screen.width / 2) - 75, (Screen.height / 2) - 0, 250, 200));
+			GUILayout.FlexibleSpace();
+			GUILayout.BeginArea(new Rect((Screen.width / 2) - 85, (Screen.height / 2) + 240, 250, 200));
 			GUILayout.BeginVertical();
 			GUILayout.BeginHorizontal();
 
