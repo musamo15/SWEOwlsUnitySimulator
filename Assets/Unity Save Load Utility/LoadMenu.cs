@@ -56,7 +56,7 @@ public class LoadMenu : MonoBehaviour
 			float resX = (float)(Screen.width) / originalWidth;
 			float resY = (float)(Screen.height) / originalHeight;
 			GUI.matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, new Vector3(resX, resY, 1));
-			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150), scrollPosition, new Rect(0, 0, 100, 500));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250.0f / 2, originalHeight / 2 - 150.0f / 2, 350, 200), scrollPosition, new Rect(0, 0, 300, 500));
 			//scrollPosition = GUI.BeginScrollView(new Rect((Screen.width / 2) - 100, (Screen.height / 2) - 50, 200, 150), scrollPosition, new Rect(0, 0, 100, 500)); //500 shows 20 files
 			//GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
 			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 50, 300, 500));

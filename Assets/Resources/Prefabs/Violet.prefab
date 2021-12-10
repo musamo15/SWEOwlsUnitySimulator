@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 3274179269513969212}
   - component: {fileID: 4981734651179134755}
   - component: {fileID: 3812434957306326081}
-  - component: {fileID: 2748326464514489162}
-  - component: {fileID: 170991503858957466}
   - component: {fileID: -8380702164786781407}
   m_Layer: 8
   m_Name: Violet
@@ -109,32 +107,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a5781f433fda034ca8c001c47fbf859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 10
---- !u!114 &2748326464514489162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6459463016241291676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483869743d3ffbc40a5dadff105f0ebc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 10
---- !u!114 &170991503858957466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6459463016241291676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b855d91fb2195d4781c6be48336df51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 10

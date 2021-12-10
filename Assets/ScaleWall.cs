@@ -24,53 +24,9 @@ public class ScaleWall : MonoBehaviour
     void OnMouseOver()
     {
 
-        if (Input.GetKey("1") || Input.GetKey("[1]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(100f, 80f, 10);
-        }
-        else if (Input.GetKey("2") || Input.GetKey("[2]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(200f, 80f, 20);
-        }
-        else if (Input.GetKey("3") || Input.GetKey("[3]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(300f, 80f, 20);
-        }
-        else if (Input.GetKey("4") || Input.GetKey("[4]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(400f, 80f, 10);
-        }
-        else if (Input.GetKey("5") || Input.GetKey("[5]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(500f, 80f, 10);
-        }
-        else if (Input.GetKey("6") || Input.GetKey("[6]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(500f, 80f, 5);
-        }
-        else if (Input.GetKey("7") || Input.GetKey("[7]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(400f, 80f, 5);
-        }
-        else if (Input.GetKey("8") || Input.GetKey("[8]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(300f, 80f, 5);
-        }
-        else if (Input.GetKey("9") || Input.GetKey("[9]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(200f, 80f, 5);
-        }
-        else if (Input.GetKey("0") || Input.GetKey("[0]"))
-        {
-            this.gameObject.transform.localScale = new Vector3(400f, 80f, 20);
-        }
-        //else if continue with as many different scales we want
-        //{
-        //    this.gameObject.transform.localScale = new Vector3(1, 1, 1);
-        //}
         if (Time.time > lastPressedTime + 0.1f)
         {
-            if (Input.GetKey("up"))
+            if (Input.GetKey("d"))
             {
                 lastPressedTime = Time.time;
                 if (lenCounter <= lenMax)
@@ -85,7 +41,7 @@ public class ScaleWall : MonoBehaviour
                 //}
             }
 
-            if (Input.GetKey("down"))
+            if (Input.GetKey("a"))
             {
                 lastPressedTime = Time.time;
                 if (lenCounter >= lenMin)
@@ -100,7 +56,7 @@ public class ScaleWall : MonoBehaviour
                 //}
             }
 
-            if (Input.GetKey("right"))
+            if (Input.GetKey("w"))
             {
                 lastPressedTime = Time.time;
                 if (widthCounter <= widMax)
@@ -115,7 +71,7 @@ public class ScaleWall : MonoBehaviour
                 //}
             }
 
-            if (Input.GetKey("left"))
+            if (Input.GetKey("s"))
             {
                 lastPressedTime = Time.time;
                 if (widthCounter >= widMin)

@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 8867548164185880825}
   - component: {fileID: 8661931116771751906}
   - component: {fileID: 776039924338555803}
-  - component: {fileID: 2919615507844573423}
-  - component: {fileID: 1732044227678760080}
   - component: {fileID: -5813306258495277014}
   m_Layer: 7
   m_Name: SpawnWall
@@ -65,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cd395dab33967614392b6622da5545f2, type: 2}
+  - {fileID: 2100000, guid: 3db1dea1a8c6ff648aa6d98c3c122461, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,32 +120,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a5781f433fda034ca8c001c47fbf859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
---- !u!114 &2919615507844573423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460756166179288646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2bc2349cd48dde45af9ca6882913fb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 0
---- !u!114 &1732044227678760080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7460756166179288646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483869743d3ffbc40a5dadff105f0ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0

@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 2153692330462470166}
   - component: {fileID: 8480812684632682761}
   - component: {fileID: 322911265152791147}
-  - component: {fileID: 1636864035654853984}
-  - component: {fileID: -7405014257289005888}
   - component: {fileID: 2178244242071369414}
   m_Layer: 8
   m_Name: Light Green
@@ -109,32 +107,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a5781f433fda034ca8c001c47fbf859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 6
---- !u!114 &1636864035654853984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7581761675506024374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483869743d3ffbc40a5dadff105f0ebc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 6
---- !u!114 &-7405014257289005888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7581761675506024374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b855d91fb2195d4781c6be48336df51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 6

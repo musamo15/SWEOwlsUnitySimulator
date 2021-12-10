@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 3983034183828965815}
   - component: {fileID: 6851102630417504424}
   - component: {fileID: 3377367300973304778}
-  - component: {fileID: 4328707553002130625}
-  - component: {fileID: -3118218584142763112}
   - component: {fileID: -1199963278065845619}
   m_Layer: 8
   m_Name: Orange
@@ -109,32 +107,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a5781f433fda034ca8c001c47fbf859, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 7
---- !u!114 &4328707553002130625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4869010968750528023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483869743d3ffbc40a5dadff105f0ebc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ID: 7
---- !u!114 &-3118218584142763112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4869010968750528023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b855d91fb2195d4781c6be48336df51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 7

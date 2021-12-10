@@ -26,7 +26,7 @@ public class ScaleColor : MonoBehaviour
 
         if (Time.time > lastPressedTime + 0.1f)
         {
-            if (Input.GetKey("up"))
+            if (Input.GetKey("d"))
             {
                 lastPressedTime = Time.time;
                 if (lenCounter <= lenMax)
@@ -41,7 +41,7 @@ public class ScaleColor : MonoBehaviour
                 //}
             }
 
-            if (Input.GetKey("down"))
+            if (Input.GetKey("a"))
             {
                 lastPressedTime = Time.time;
                 if (lenCounter > lenMin)
@@ -56,7 +56,7 @@ public class ScaleColor : MonoBehaviour
                 //}
             }
 
-            if (Input.GetKey("right"))
+            if (Input.GetKey("w"))
             {
                 lastPressedTime = Time.time;
                 if (widthCounter <= widMax)
@@ -71,7 +71,7 @@ public class ScaleColor : MonoBehaviour
                 //}
             }
 
-            if (Input.GetKey("left"))
+            if (Input.GetKey("s"))
             {
                 lastPressedTime = Time.time;
                 if (widthCounter > widMin)

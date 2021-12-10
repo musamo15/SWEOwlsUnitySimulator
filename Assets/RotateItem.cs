@@ -20,9 +20,9 @@ public class RotateItem : MonoBehaviour
         if (Time.time > lastPressedTime + 0.1f)
         {
             //if (Input.GetMouseButtonDown(1))
-            if (Input.GetKey("."))
+            if (Input.GetKey("e"))
             {
-                if (this.gameObject.tag == "SpikePrime")
+                if (this.gameObject.tag == "SpikePrime" || this.gameObject.tag == "SpikeImage")
                 {
                     lastPressedTime = Time.time;
                     this.gameObject.transform.Rotate(0.0f, 0.0f, 10.0f, Space.Self);
@@ -36,9 +36,9 @@ public class RotateItem : MonoBehaviour
             }
 
             //if (Input.GetMouseButtonDown(0))
-            if (Input.GetKey(","))
+            if (Input.GetKey("q"))
             {
-                if (this.gameObject.tag == "SpikePrime")
+                if (this.gameObject.tag == "SpikePrime" || this.gameObject.tag == "SpikeImage")
                 {
                     lastPressedTime = Time.time;
                     this.gameObject.transform.Rotate(0.0f, 0.0f, -10.0f, Space.Self);

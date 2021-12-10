@@ -16,8 +16,9 @@ public class SaveLoadMenu : MonoBehaviour {
 	private char[] newLine = "\n\r".ToCharArray();
 
 	public Vector2 scrollPosition = Vector2.zero;
-	public float originalWidth = 800.0f;
-	public float originalHeight = 600.0f;
+	public float originalWidth = 1920.0f;
+	public float originalHeight = 1080.0f;
+	public Texture btnTexture;
 
 	private Regex regularExpression = new Regex("^[a-zA-Z0-9_\"  *\"]*$");
 	/*Regular expression, contains only upper and lowercase letters, numbers, and underscores.
@@ -100,7 +101,7 @@ public class SaveLoadMenu : MonoBehaviour {
 
 
 		if (showMenu == false && showLoad == false && showSave == false) {
-			if(GUI.Button(new Rect(0, 0, 50, 50),"Menu")) {
+			if(GUI.Button(new Rect(0, 0, 50, 50), btnTexture)) {
 				showMenu = true;
 				return;
 			}
@@ -160,7 +161,7 @@ public class SaveLoadMenu : MonoBehaviour {
 		if(showLoad == true) {
 			//GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
 			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 300, 300));
-			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150), scrollPosition, new Rect(0, 0, 100, 500));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250.0f / 2, originalHeight / 2 - 150.0f / 2, 350, 200), scrollPosition, new Rect(0, 0, 300, 500));
 			foreach (SaveGame saveGame in saveGames) {
 				if(GUILayout.Button(saveGame.savegameName + " (" + saveGame.saveDate + ")")) {
 					slu.LoadGame(saveGame.savegameName);
@@ -169,16 +170,24 @@ public class SaveLoadMenu : MonoBehaviour {
 				}
 			}
 			GUI.EndScrollView();
-			//GUILayout.BeginHorizontal();
-			//GUILayout.FlexibleSpace();
+
+			GUILayout.BeginArea(new Rect((Screen.width / 2) - 75, (Screen.height / 2) - 0, 250, 200));
+			GUILayout.BeginVertical();
+			GUILayout.BeginHorizontal();
+
 			if (GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
 				showLoad = false;
 				showMenu = true;
 			}
-			GUILayout.FlexibleSpace();
-			//GUILayout.EndHorizontal();
 
 			GUILayout.FlexibleSpace();
+			GUILayout.EndHorizontal();
+			GUILayout.EndVertical();
+			GUILayout.EndArea();
+			//GUILayout.FlexibleSpace();
+			//GUILayout.EndHorizontal();
+
+			//GUILayout.FlexibleSpace();
 			//GUILayout.EndArea();
 			//GUILayout.EndVertical();
 			//GUI.EndScrollView();
@@ -189,14 +198,14 @@ public class SaveLoadMenu : MonoBehaviour {
 			//GUILayout.BeginVertical(GUILayout.MinWidth(550));
 			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 250, 200));
 			//GUILayout.BeginArea(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150));
-			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 250, 150), scrollPosition, new Rect(0, 0, 150, 525));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250.0f / 2, originalHeight / 2 - 150.0f / 2, 350, 200), scrollPosition, new Rect(0, 0, 300, 525));
 			for (int i = -1; i < saveGames.Count; i++) {
 
 				if(i == selectedSaveGameIndex) {
 
 					GUILayout.BeginHorizontal(GUILayout.MinWidth(100));
 
-					string str = GUILayout.TextField(saveGameName, GUILayout.MinWidth(95));
+					string str = GUILayout.TextField(saveGameName, 28, GUILayout.MinWidth(200));
 
 					if(regularExpression.IsMatch(str)){
 						if(str.IndexOfAny(newLine) != -1) {
@@ -217,7 +226,7 @@ public class SaveLoadMenu : MonoBehaviour {
 					}
 
 					GUILayout.FlexibleSpace();
-					if(GUILayout.Button("Save", GUILayout.MaxWidth(50))) {
+					if(GUILayout.Button("Save", GUILayout.MaxWidth(100))) {
 						if(i >= 0) {
 							SaveLoad.DeleteFile(slu.saveGamePath, saveGames[i].savegameName);
 						}
@@ -227,7 +236,7 @@ public class SaveLoadMenu : MonoBehaviour {
 						return;
 					}
 
-					if(GUILayout.Button("Cancel", GUILayout.MaxWidth(50))) {
+					if(GUILayout.Button("Cancel", GUILayout.MaxWidth(100))) {
 						selectedSaveGameIndex = -99;
 						return;
 					}
@@ -251,8 +260,12 @@ public class SaveLoadMenu : MonoBehaviour {
 				}
 			}
 			GUI.EndScrollView();
+			//GUILayout.BeginHorizontal();
+			//GUILayout.FlexibleSpace();
+			GUILayout.BeginArea(new Rect((Screen.width / 2) - 75, (Screen.height / 2) - 0, 250, 200));
+			GUILayout.BeginVertical();
 			GUILayout.BeginHorizontal();
-			GUILayout.FlexibleSpace();
+
 			if (GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
 				if(selectedSaveGameIndex != -99) {
 					selectedSaveGameIndex = -99;
@@ -264,10 +277,8 @@ public class SaveLoadMenu : MonoBehaviour {
 			}
 			GUILayout.FlexibleSpace();
 			GUILayout.EndHorizontal();
-
-			GUILayout.FlexibleSpace();
-			//GUILayout.EndVertical();
-			//GUILayout.EndArea();
+			GUILayout.EndVertical();
+			GUILayout.EndArea();
 			//GUI.EndScrollView();
 
 		}

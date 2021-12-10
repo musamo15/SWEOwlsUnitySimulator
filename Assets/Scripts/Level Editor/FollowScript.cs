@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class FollowScript : MonoBehaviour
 {
+    void Start()
+    {
+        if (this.gameObject.tag == "SpikeImage")
+        {
+            transform.Rotate(-90.0f, 0.0f, -90.0f, Space.Self);
+        }
+    }
     
     // Update is called once per frame
     void Update()

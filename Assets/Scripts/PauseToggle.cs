@@ -5,6 +5,9 @@ using UnityEngine;
 public class PauseToggle : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public GameObject PauseButton;
+    public GameObject PlayButton;
+    public GameObject PauseCanvas;
 
     public void ButtonClick()
     {
@@ -40,6 +43,10 @@ public class PauseToggle : MonoBehaviour
         //GameObject.FindWithTag("Pause").SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        PauseButton.SetActive(true);
+        PlayButton.SetActive(false);
+        PauseCanvas.SetActive(false);
+
     }
 
     public void Pause()
@@ -47,6 +54,9 @@ public class PauseToggle : MonoBehaviour
         //GameObject.FindWithTag("Pause").SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+        PauseButton.SetActive(false);
+        PlayButton.SetActive(true);
+        PauseCanvas.SetActive(true);
     }
 }
 
