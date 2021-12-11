@@ -32,7 +32,7 @@ public class HandleRobot : MonoBehaviour
 
     private int currentRobotID;
 
-    void Start()
+    void Awake()
     {
         characterHolder = GameObject.Find("CurrentRobotHolder");
         currentRobotController = characterHolder.GetComponent<CurrentRobotTracker>();
