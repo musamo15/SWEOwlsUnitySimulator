@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1271430754111642913, guid: 75d2fe4e209867748b1e0c509da7ef17, type: 3}
       propertyPath: m_Name
-      value: SpikePrimeFrontBack
+      value: SpikePrimeFrontBack Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1271430754111642913, guid: 75d2fe4e209867748b1e0c509da7ef17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1940725040368879515, guid: 75d2fe4e209867748b1e0c509da7ef17, type: 3}
       propertyPath: m_RootOrder
