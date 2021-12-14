@@ -12,6 +12,7 @@ TagManager:
   - SpikeImage
   - LightMatrix
   - Pause
+  - Color
   layers:
   - Default
   - TransparentFX

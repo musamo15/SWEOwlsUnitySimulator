@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5441305822772813231}
   - component: {fileID: -1062210290293259565}
   m_Layer: 8
-  m_Name: LightGreenImage
+  m_Name: Light GreenImage
   m_TagString: ItemImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2970183626899606994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 150, y: 23.9, z: 0}
+  m_LocalPosition: {x: 150, y: 16.78, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}

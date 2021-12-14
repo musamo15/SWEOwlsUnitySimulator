@@ -11,16 +11,40 @@ public class ColorDetection : MonoBehaviour
     public Text colorTxt;
     public string colorID;
     public string detectedColor;
-    
+    public ArrayList colorList = new ArrayList();
 
+
+
+    void Start()
+    {
+        colorList.Add("Red");
+        colorList.Add("Black");
+        colorList.Add("Pink");
+        colorList.Add("Yellow");
+        colorList.Add("Green");
+        colorList.Add("Light Green");
+        colorList.Add("Blue");
+        colorList.Add("Light Blue");
+        colorList.Add("Violet");
+        colorList.Add("Orange");
+        colorList.Add("White");
+    }
 
     void Awake()
     {
         currentColor = "None";
-        colorTxt.text = currentColor;  
+        colorTxt.text = currentColor;
+       
+
+
+
+    
+
+
+
     }
 
-    public string getCurrentColor()
+public string getCurrentColor()
     {
         return currentColor;
     }
@@ -28,10 +52,24 @@ public class ColorDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        currentColor = other.name.ToString().Replace("(Clone)", "");
-        currentColor = currentColor.Replace("Image", "");
+        
+        
+            currentColor = other.name.ToString().Replace("(Clone)", "");
+            currentColor = currentColor.Replace("Image", "");
+            
+        if(colorList.Contains(currentColor))
+        {
+            colorTxt.text = currentColor;
+        }
+        else
+        {
+            currentColor = "None";
+        }
 
-        colorTxt.text = currentColor;
+            
+      
+
+
 
     }
    
@@ -43,10 +81,19 @@ public class ColorDetection : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+
         currentColor = other.name.ToString().Replace("(Clone)", "");
         currentColor = currentColor.Replace("Image", "");
 
-        colorTxt.text = currentColor;
+        if (colorList.Contains(currentColor))
+        {
+            colorTxt.text = currentColor;
+        }
+        else
+        {
+            currentColor = "None";
+        }
+
     }
 
 
