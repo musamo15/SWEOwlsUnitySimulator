@@ -18836,7 +18836,6 @@ GameObject:
   - component: {fileID: 5884101712997556203}
   - component: {fileID: 3820936974636574821}
   - component: {fileID: 4454783108070677403}
-  - component: {fileID: 5638346102526982432}
   - component: {fileID: 6238587335322027243}
   m_Layer: 0
   m_Name: Color Sensor(C)
@@ -18941,22 +18940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46273fc06c47d94599f05044d604991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5638346102526982432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910948896278229154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ac7bb1703d82c44ab0b79b70ba66bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: None
-  colorTxt: {fileID: 0}
-  colorID: C
-  detectedColor: 
 --- !u!114 &6238587335322027243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39162,7 +39145,6 @@ GameObject:
   - component: {fileID: 3820936974636574820}
   - component: {fileID: 645825503005989520}
   - component: {fileID: 1490542402678995361}
-  - component: {fileID: 7345242076437329011}
   m_Layer: 0
   m_Name: Color Sensor(E)
   m_TagString: Untagged
@@ -39308,22 +39290,6 @@ MonoBehaviour:
     setValuesField: 0
     readFieldType: 0
     readFromDict: 0
---- !u!114 &7345242076437329011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3739338959337282232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ac7bb1703d82c44ab0b79b70ba66bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: None
-  colorTxt: {fileID: 0}
-  colorID: E
-  detectedColor: 
 --- !u!1 &3771741258507281982
 GameObject:
   m_ObjectHideFlags: 0
@@ -40709,7 +40675,6 @@ GameObject:
   - component: {fileID: 3820936975930357045}
   - component: {fileID: 3820936975930357044}
   - component: {fileID: 3820936975930357047}
-  - component: {fileID: 4089452625031547779}
   - component: {fileID: 6945215075424524828}
   - component: {fileID: 7970100712299738461}
   m_Layer: 0
@@ -40803,22 +40768,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.009146827, y: 0.009257511, z: 0.028973926}
   m_Center: {x: -0.000000006505014, y: -0.000000060972624, z: 0.010240111}
---- !u!114 &4089452625031547779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820936975930357041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ac7bb1703d82c44ab0b79b70ba66bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: None
-  colorTxt: {fileID: 0}
-  colorID: D
-  detectedColor: 
 --- !u!114 &6945215075424524828
 MonoBehaviour:
   m_ObjectHideFlags: 0

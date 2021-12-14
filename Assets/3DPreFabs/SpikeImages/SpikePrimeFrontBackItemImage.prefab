@@ -60862,7 +60862,6 @@ GameObject:
   - component: {fileID: 8627857856119393145}
   - component: {fileID: 4830303207594961325}
   - component: {fileID: 6278006736555477631}
-  - component: {fileID: 8033534726927644239}
   m_Layer: 0
   m_Name: Color Sensor(E)
   m_TagString: Untagged
@@ -61008,22 +61007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46273fc06c47d94599f05044d604991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8033534726927644239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6359068428888150974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ac7bb1703d82c44ab0b79b70ba66bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: None
-  colorTxt: {fileID: 0}
-  colorID: E
-  detectedColor: 
 --- !u!1 &6362418333729128171
 GameObject:
   m_ObjectHideFlags: 0
@@ -73131,7 +73114,6 @@ GameObject:
   - component: {fileID: 7450119443914555826}
   - component: {fileID: 7450119443914555827}
   - component: {fileID: 6098284879699999436}
-  - component: {fileID: 7556362358245557999}
   - component: {fileID: 8732693982662140409}
   m_Layer: 0
   m_Name: Distance Sensor(F)
@@ -73218,21 +73200,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46273fc06c47d94599f05044d604991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7556362358245557999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450119443914555821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6191c2e3bf32a6d49ba028a795914b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectableDistance: 200
-  distanceText: {fileID: 0}
-  id: F
 --- !u!114 &8732693982662140409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73561,7 +73528,6 @@ GameObject:
   - component: {fileID: 7450119444213634066}
   - component: {fileID: 7450119444213634064}
   - component: {fileID: 7450119444213634065}
-  - component: {fileID: 4351815930718617645}
   - component: {fileID: 6453256240357392040}
   - component: {fileID: 8190189151392129834}
   m_Layer: 0
@@ -73637,21 +73603,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4351815930718617645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450119444213634067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6191c2e3bf32a6d49ba028a795914b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectableDistance: 200
-  distanceText: {fileID: 0}
-  id: C
 --- !u!114 &6453256240357392040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80535,7 +80486,6 @@ GameObject:
   - component: {fileID: 8627857856119393144}
   - component: {fileID: 562739533702405710}
   - component: {fileID: 1410563602238971470}
-  - component: {fileID: 7399875138130399007}
   m_Layer: 0
   m_Name: Color Sensor(D)
   m_TagString: Untagged
@@ -80681,22 +80631,6 @@ MonoBehaviour:
     setValuesField: 0
     readFieldType: 0
     readFromDict: 0
---- !u!114 &7399875138130399007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8169021845958490532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ac7bb1703d82c44ab0b79b70ba66bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentColor: None
-  colorTxt: {fileID: 0}
-  colorID: D
-  detectedColor: 
 --- !u!1 &8173804755041004291
 GameObject:
   m_ObjectHideFlags: 0

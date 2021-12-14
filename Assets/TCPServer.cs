@@ -192,24 +192,32 @@ public class TCPServer : MonoBehaviour
                     {
 
                         int length = 0;
-
-                        while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+                        try
                         {
 
-                            var incomingData = new byte[length];
 
-                            Array.Copy(bytes, 0, incomingData, 0, length);
+                            while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
+                            {
 
-                            string clientMessage = Encoding.ASCII.GetString(incomingData);
+                                var incomingData = new byte[length];
 
-                            //Debug.Log("Client message recieved as: " + clientMessage);
+                                Array.Copy(bytes, 0, incomingData, 0, length);
 
-                            //Message to json format
-                            handleMessage(clientMessage);
-                            
+                                string clientMessage = Encoding.ASCII.GetString(incomingData);
+
+                                //Debug.Log("Client message recieved as: " + clientMessage);
+
+                                //Message to json format
+                                handleMessage(clientMessage);
 
 
+
+                            }
                         }
+                        catch (Exception exception)
+                        {
+                        }
+                        
 
 
                     }
@@ -243,13 +251,14 @@ public class TCPServer : MonoBehaviour
                     //Debug.Log("Message Sent");
 
                     stream.Write(serverMessageAsByteArray, 0, serverMessageAsByteArray.Length);
+                    //Debug.Log(messageHeader);
                 }
 
                 
             }
             catch (SocketException socketException)
             {
-                Debug.Log("Socket exception: " + socketException);
+                Debug.Log("Socket exception" + socketException);
             }
         }
 
@@ -371,7 +380,10 @@ public class TCPServer : MonoBehaviour
         {
             if(colorMessage.getColorID().Equals("C"))
             {
+                //Debug.Log("????");
+                //Debug.Log(trippleColorControllerC.colorTxt.text);
                 SendColorMessage(trippleColorControllerC.currentColor);
+                
             }
             else if (colorMessage.getColorID().Equals("D"))
             {
