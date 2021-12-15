@@ -64,6 +64,7 @@ public string getCurrentColor()
         else
         {
             currentColor = "None";
+            colorTxt.text = currentColor;
         }
 
             
@@ -92,6 +93,7 @@ public string getCurrentColor()
         else
         {
             currentColor = "None";
+            colorTxt.text = currentColor;
         }
 
     }

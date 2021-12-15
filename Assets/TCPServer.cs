@@ -278,6 +278,8 @@ public class TCPServer : MonoBehaviour
             string messageRequestType = message.messageRequestType;
             currentRobotID = currentRobotController.getCurrentRobotID();
 
+           
+
             if (messageType != null)
             {
                 if(messageType.Equals("shutdown"))
