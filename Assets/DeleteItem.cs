@@ -18,14 +18,8 @@ public class DeleteItem : MonoBehaviour
         if(Input.GetKey("backspace") || Input.GetMouseButtonDown(1))
         {
             Destroy(this.gameObject);
-            //editor.ItemButtons[ID].quantity++;
-            //editor.ItemButtons[ID].quantityText.text = editor.ItemButtons[ID].quantity.ToString();
         }
 
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    this.gameObject.transform.Rotate(0.0f, 10.0f, 0.0f, Space.Self);
-        //}
     }
 
     

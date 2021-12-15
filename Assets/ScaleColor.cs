@@ -34,11 +34,6 @@ public class ScaleColor : MonoBehaviour
                     lenCounter++;
                     this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x + 2f, 1f, this.gameObject.transform.localScale.z);
                 }
-                //else
-                //{
-                //    lenCounter = 1;
-                //    this.gameObject.transform.localScale = new Vector3(50f, 50f, this.gameObject.transform.localScale.z);
-                //}
             }
 
             if (Input.GetKey("a"))
@@ -49,11 +44,6 @@ public class ScaleColor : MonoBehaviour
                     lenCounter--;
                     this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x - 2f, 1f, this.gameObject.transform.localScale.z);
                 }
-                //else
-                //{
-                //    lenCounter = 1;
-                //    this.gameObject.transform.localScale = new Vector3(50f, 50f, this.gameObject.transform.localScale.z);
-                //}
             }
 
             if (Input.GetKey("w"))
@@ -64,11 +54,6 @@ public class ScaleColor : MonoBehaviour
                     widthCounter++;
                     this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 1f, this.gameObject.transform.localScale.z + 2f);
                 }
-                //else
-                //{
-                //    widthCounter = 1;
-                //    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 50f, 5);
-                //}
             }
 
             if (Input.GetKey("s"))
@@ -79,11 +64,6 @@ public class ScaleColor : MonoBehaviour
                     widthCounter--;
                     this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 1f, this.gameObject.transform.localScale.z - 2f);
                 }
-                //else
-                //{
-                //    widthCounter = 1;
-                //    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 50f, 5);
-                //}
             }
         }
     }
