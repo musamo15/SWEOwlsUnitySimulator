@@ -6,8 +6,8 @@ public class ScaleColor : MonoBehaviour
 {
     public int ID;
     private LevelEditorManager editor;
-    private int lenCounter = 0;
-    private int widthCounter = 0;
+    private int lenCounter = 4;
+    private int widthCounter = 4;
     private int lenMax = 100;
     private int lenMin = 0; //A lower value could cause the object's x value scale to reach 0 and disappear
     private int widMax = 100;
@@ -32,7 +32,7 @@ public class ScaleColor : MonoBehaviour
                 if (lenCounter <= lenMax)
                 {
                     lenCounter++;
-                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x + 10f, 1f, this.gameObject.transform.localScale.z);
+                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x + 2f, 1f, this.gameObject.transform.localScale.z);
                 }
                 //else
                 //{
@@ -47,7 +47,7 @@ public class ScaleColor : MonoBehaviour
                 if (lenCounter > lenMin)
                 {
                     lenCounter--;
-                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x - 10f, 1f, this.gameObject.transform.localScale.z);
+                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x - 2f, 1f, this.gameObject.transform.localScale.z);
                 }
                 //else
                 //{
@@ -62,7 +62,7 @@ public class ScaleColor : MonoBehaviour
                 if (widthCounter <= widMax)
                 {
                     widthCounter++;
-                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 1f, this.gameObject.transform.localScale.z + 10f);
+                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 1f, this.gameObject.transform.localScale.z + 2f);
                 }
                 //else
                 //{
@@ -77,7 +77,7 @@ public class ScaleColor : MonoBehaviour
                 if (widthCounter > widMin)
                 {
                     widthCounter--;
-                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 1f, this.gameObject.transform.localScale.z - 10f);
+                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x, 1f, this.gameObject.transform.localScale.z - 2f);
                 }
                 //else
                 //{

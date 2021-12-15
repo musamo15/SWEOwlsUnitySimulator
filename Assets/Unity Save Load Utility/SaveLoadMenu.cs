@@ -92,6 +92,31 @@ public class SaveLoadMenu : MonoBehaviour {
 		}
 	}
 
+	public void Menu()
+    {
+		if (showMenu == false)
+		{
+			if (showLoad == true || showSave == true)
+			{
+				showMenu = false;
+				showLoad = false;
+				showSave = false;
+			}
+			else
+			{
+				showMenu = true;
+				showLoad = false;
+				showSave = false;
+			}
+		}
+
+		else if (showMenu == true)
+        {
+			showMenu = false;
+			showLoad = false;
+			showSave = false;
+		}
+    }
 
 	void OnGUI() {
 
@@ -100,12 +125,12 @@ public class SaveLoadMenu : MonoBehaviour {
 		GUI.matrix = Matrix4x4.TRS(new Vector3(0, 0, 0), Quaternion.identity, new Vector3(resX, resY, 1));
 
 
-		if (showMenu == false && showLoad == false && showSave == false) {
-			if(GUI.Button(new Rect(0, 0, 50, 50), btnTexture)) {
-				showMenu = true;
-				return;
-			}
-		}
+		//if (showMenu == false && showLoad == false && showSave == false) {
+		//	if(GUI.Button(new Rect(0, 0, 50, 50), btnTexture)) {
+		//		showMenu = true;
+		//		return;
+		//	}
+		//}
 
 		if(showMenu == true) {
 			//GUILayout.BeginVertical(GUILayout.MinWidth(300));
@@ -137,8 +162,9 @@ public class SaveLoadMenu : MonoBehaviour {
 
 			if (GUILayout.Button("Clear"))
 			{
-				slu.LoadGame("zzz DONT TOUCH zzz.sav"); //Loads a nonexistent file to clear the level
+				//slu.LoadGame("zzz DONT TOUCH zzz.sav"); //Loads a nonexistent file to clear the level
 				//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+				slu.ClearScene();
 				return;
 			}
 
@@ -161,8 +187,13 @@ public class SaveLoadMenu : MonoBehaviour {
 		if(showLoad == true) {
 			//GUILayout.BeginVertical(GUILayout.MinWidth(300)); 
 			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 300, 300));
-			
-			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250, originalHeight / 2 - 100, 350, 200), scrollPosition, new Rect(0, 0, 0, 500));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 160.0f, originalHeight / 2 - 150.0f/2, 350, 200), scrollPosition, new Rect(0, 0, 0, 525));
+			if (GUILayout.Button("Back", GUILayout.MaxWidth(100)))
+			{
+				showLoad = false;
+				showMenu = true;
+			}
+			//scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250, originalHeight / 2 - 100, 350, 200), scrollPosition, new Rect(0, 0, 0, 500));
 			foreach (SaveGame saveGame in saveGames) {
 				if(GUILayout.Button(saveGame.savegameName + " (" + saveGame.saveDate + ")")) {
 					slu.LoadGame(saveGame.savegameName);
@@ -172,21 +203,16 @@ public class SaveLoadMenu : MonoBehaviour {
 			}
 			GUI.EndScrollView();
 
-			GUILayout.FlexibleSpace();
+			//GUILayout.FlexibleSpace();
 
-			GUILayout.BeginArea(new Rect((Screen.width / 2) - 85, (Screen.height / 2) + 240, 250, 100));
+			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 85, (Screen.height / 2) + 240, 250, 100));
 			//GUILayout.BeginVertical();
 			//GUILayout.BeginHorizontal(GUILayout.Width(200));
-
-			if (GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
-				showLoad = false;
-				showMenu = true;
-			}
 
 			//GUILayout.FlexibleSpace();
 			//GUILayout.EndHorizontal();
 			//GUILayout.EndVertical();
-			GUILayout.EndArea();
+			//GUILayout.EndArea();
 			//GUILayout.FlexibleSpace();
 			//GUILayout.EndHorizontal();
 
@@ -201,7 +227,19 @@ public class SaveLoadMenu : MonoBehaviour {
 			//GUILayout.BeginVertical(GUILayout.MinWidth(550));
 			//GUILayout.BeginArea(new Rect((Screen.width / 2) - 50, (Screen.height / 2) - 50, 250, 200));
 			//GUILayout.BeginArea(new Rect(originalWidth / 2 - 200.0f / 2, originalHeight / 2 - 150.0f / 2, 200, 150));
-			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 250.0f / 2, originalHeight / 2 - 150.0f / 2, 350, 200), scrollPosition, new Rect(0, 0, 300, 525));
+			scrollPosition = GUI.BeginScrollView(new Rect(originalWidth / 2 - 160.0f, originalHeight / 2 - 150.0f/2, 350, 200), scrollPosition, new Rect(0, 0, 300, 560));
+			if (GUILayout.Button("Back", GUILayout.MaxWidth(100)))
+			{
+				if (selectedSaveGameIndex != -99)
+				{
+					selectedSaveGameIndex = -99;
+				}
+				else
+				{
+					showSave = false;
+					showMenu = true;
+				}
+			}
 			for (int i = -1; i < saveGames.Count; i++) {
 
 				if(i == selectedSaveGameIndex) {
@@ -264,24 +302,7 @@ public class SaveLoadMenu : MonoBehaviour {
 			}
 			GUI.EndScrollView();
 			//GUILayout.BeginHorizontal();
-			GUILayout.FlexibleSpace();
-			GUILayout.BeginArea(new Rect((Screen.width / 2) - 85, (Screen.height / 2) + 240, 250, 200));
-			GUILayout.BeginVertical();
-			GUILayout.BeginHorizontal();
-
-			if (GUILayout.Button("Back", GUILayout.MaxWidth(100))) {
-				if(selectedSaveGameIndex != -99) {
-					selectedSaveGameIndex = -99;
-				}
-				else {
-					showSave = false;
-					showMenu = true;
-				}
-			}
-			GUILayout.FlexibleSpace();
-			GUILayout.EndHorizontal();
-			GUILayout.EndVertical();
-			GUILayout.EndArea();
+			
 			//GUI.EndScrollView();
 
 		}

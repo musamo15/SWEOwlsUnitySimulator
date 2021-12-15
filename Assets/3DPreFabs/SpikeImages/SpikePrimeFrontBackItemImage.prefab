@@ -43393,7 +43393,6 @@ GameObject:
   - component: {fileID: 5418474561415531373}
   - component: {fileID: 4645913039539376593}
   - component: {fileID: 4645913039539376598}
-  - component: {fileID: -1142545364691108424}
   - component: {fileID: 114308851052987805}
   - component: {fileID: 3526058734990432688}
   m_Layer: 0
@@ -43410,9 +43409,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4645913039539376599}
-  m_LocalRotation: {x: -0.5091657, y: -0.49066317, z: -0.49066317, w: 0.5091657}
-  m_LocalPosition: {x: -30.8, y: -69.1, z: -58}
-  m_LocalScale: {x: 64.999985, y: 64.999985, z: 65}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -30.8, y: -69.1, z: 3.263245}
+  m_LocalScale: {x: 65, y: 65, z: 65}
   m_Children:
   - {fileID: 1919347345456590406}
   - {fileID: 7779714395526692805}
@@ -43857,7 +43856,7 @@ Transform:
   - {fileID: 8627857854594471466}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -42.88}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!54 &4645913039539376593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -43882,29 +43881,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4645913039539376599}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.40100625, y: 0.59103084, z: 0.3486096}
   m_Center: {x: -0.10760154, y: 0.23399092, z: 0.030755265}
---- !u!114 &-1142545364691108424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4645913039539376599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c19f3e134862e74dbc98cb514a82ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabName: SpikePrimeFrontBackItemImage
-  id: 1
-  idParent: 1
-  dontSave: 0
-  componentSaveMode: 3
-  componentTypesToSave: []
 --- !u!114 &114308851052987805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43929,7 +43910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483869743d3ffbc40a5dadff105f0ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: 0
 --- !u!1 &4657764130582703708
 GameObject:
   m_ObjectHideFlags: 0
