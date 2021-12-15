@@ -22,6 +22,7 @@ public class CalculatePosition : MonoBehaviour
         //SpikePrime = GameObject.FindGameObjectWithTag("SpikePrime");
         startingPosition = SpikePrime.transform.position;
         startingRotation = SpikePrime.transform.eulerAngles.y;
+        currentPositionText.text = "X:0 Y:0";
     }
 
     public float getCurrentRotation()
@@ -34,13 +35,11 @@ public class CalculatePosition : MonoBehaviour
         return this.currentPosition;
     }
     //Getting current position RELATIVE TO STARTING POSITION
-    public Vector3 calculateCurrentPosition()
+    public void calculateCurrentPosition()
     {
         Vector3 currentPos = SpikePrime.transform.position;
 
-        currentPositionText.text = (currentPos-startingPosition).ToString();
-        
-        return currentPos-startingPosition;
+        currentPositionText.text = ("X: "+(currentPos.x-startingPosition.x).ToString("F2") + " Y: "+((currentPos.z-startingPosition.z).ToString("F2")));
     }
 
 
@@ -71,7 +70,7 @@ public class CalculatePosition : MonoBehaviour
 
     public void Update()
     {
-        currentPosition = calculateCurrentPosition();
+        calculateCurrentPosition();
         currentRotation = calculateCurrentRotation();
         
     }

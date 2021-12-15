@@ -9,7 +9,7 @@ public class ShutDownButton : MonoBehaviour
     public Button myButton;
     private GameObject shutDownHolder;
     private TCPTestClient shutdownController;
-
+    private TCPServer serverController;
 
 
     void Start()
@@ -27,7 +27,17 @@ public class ShutDownButton : MonoBehaviour
 
          shutdownController.ConnectToTcpServer();
 
-        
+        shutDownHolder = GameObject.Find("ShutDownHolder");
+        shutdownController = shutDownHolder.GetComponent<TCPTestClient>();
+
+        shutdownController.ConnectToTcpServer();
+
+        GameObject serverHolder = GameObject.Find("TCPServerHolder");
+
+        serverController = serverHolder.GetComponent<TCPServer>();
+        serverController.closeTCPSocketConnection();
+
+
 
     }
     

@@ -121,10 +121,19 @@ public class TCPServer : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        tcpListener.Stop();
+        closeTCPSocketConnection();
         tcpListenerThread.Abort();
     }
 
+    public void closeTCPSocketConnection()
+    {
+        if (tcpListener != null)
+        {
+
+            tcpListener.Stop();
+            tcpListener.Server.Close();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

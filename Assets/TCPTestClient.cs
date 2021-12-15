@@ -31,12 +31,8 @@ public class TCPTestClient : MonoBehaviour
 			DestroyObject(gameObject);
         }
 
-		//ConnectToTcpServer();
-
-
 
 	}
-
 
     void OnApplicationQuit()
     {
@@ -49,7 +45,6 @@ public class TCPTestClient : MonoBehaviour
 
         }
 		
-
     }
 
 
