@@ -39,14 +39,28 @@ public class TCPServer : MonoBehaviour
 
 
     //Access to the lightMatrix
-    GameObject lightMatrixInfo;
-    LightMatrix lightMatrixController;
+    public GameObject lightMatrixInfoDefault;
+    LightMatrix lightMatrixControllerDefault;
+
+    //Access to the lightMatrix
+    public GameObject lightMatrixInfoTrippleColor;
+    LightMatrix lightMatrixControllerTrippleColor;
+
+    //Access to the lightMatrix
+    public GameObject lightMatrixInfoSideDistance;
+    LightMatrix lightMatrixControllerSideDistance;
+
+    //Access to the lightMatrix
+    public GameObject lightMatrixInfoFrontBack;
+
+    LightMatrix lightMatrixControllerFrontBack;
+
 
 
     //*****Default Robot Access*****
 
-        //Access to the distance sensor
-        public GameObject defaultDistanceInfo;
+    //Access to the distance sensor
+    public GameObject defaultDistanceInfo;
         DistanceSensor defaultDistanceController;
 
     
@@ -166,6 +180,11 @@ public class TCPServer : MonoBehaviour
         trippleColorControllerD = trippleColorInfoObjD.GetComponent<ColorDetection>();
         trippleColorControllerE = trippleColorInfoObjE.GetComponent<ColorDetection>();
 
+        lightMatrixControllerDefault = lightMatrixInfoDefault.GetComponent<LightMatrix>();
+        lightMatrixControllerFrontBack = lightMatrixInfoFrontBack.GetComponent<LightMatrix>();
+        lightMatrixControllerSideDistance = lightMatrixInfoSideDistance.GetComponent<LightMatrix>();
+        lightMatrixControllerTrippleColor = lightMatrixInfoTrippleColor.GetComponent<LightMatrix>();
+
 
 
         characterHolder = GameObject.Find("CurrentRobotHolder");
@@ -278,7 +297,7 @@ public class TCPServer : MonoBehaviour
     {
         
         Message message = Message.CreateFromJSON(newMessage);
-        
+
         
 
         if (message != null)
@@ -490,9 +509,28 @@ public class TCPServer : MonoBehaviour
 
     private void handleLightMatrixMessage(LightMatrixMessage lightMatrixMessage)
     {
-        lightMatrixInfo = GameObject.Find("LightMatrixImage");
-        lightMatrixController = lightMatrixInfo.GetComponent<LightMatrix>();
-        lightMatrixController.setImage(lightMatrixMessage.getImage());
+
+        if (currentRobotID == 0)
+        {
+            lightMatrixControllerDefault.setImage(lightMatrixMessage.image);
+        }
+
+        if (currentRobotID == 1)
+        {
+            lightMatrixControllerSideDistance.setImage(lightMatrixMessage.image);
+        }
+
+        if (currentRobotID == 2)
+        {
+            lightMatrixControllerFrontBack.setImage(lightMatrixMessage.image);
+        }
+
+        if (currentRobotID == 3)
+        {
+            lightMatrixControllerTrippleColor.setImage(lightMatrixMessage.image);
+        }
+
+
     }
 
     private void handleDistanceMessage(DistanceMessage distanceMessage)
@@ -727,13 +765,9 @@ public class TCPServer : MonoBehaviour
     [System.Serializable]
     public class LightMatrixMessage
     {
-        private string image;
+        public string image;
         private string text;
 
-        public string getImage()
-        {
-            return this.image;
-        }
 
         public string getText()
         {
